@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  
+    .button {
+        @apply inline-flex items-center px-4 py-2 border text-sm font-medium rounded-md transition-all duration-300 ease-in-out bg-blue-600 text-white ring-blue-500 hover:bg-blue-800;
+    }
+
+    .button:hover, .button:focus {
+        @apply outline-none ring-2 ring-offset-2;
+    }
+
+ 
+    .btn {
+        @apply button ;
+    }
+
+
+    /* SMALL  */
+    .button-sm {
+        @apply inline-flex items-center px-2 py-1 border text-xs font-medium rounded-md transition-all duration-300 ease-in-out bg-blue-600 text-white ring-blue-500 hover:bg-blue-800;
+    }
+
+    .button-sm:hover, .button-sm:focus {
+        @apply outline-none ring-2 ring-offset-2;
+    }
+
+    .btn-sm { @apply button-sm ; }
+
+
+    /* DANGER */
+
+
+        .button-red {
+        @apply inline-flex items-center px-4 py-2 border text-sm font-medium rounded-md transition-all duration-300 ease-in-out bg-red-600 text-white ring-red-500 hover:bg-red-800;
+    }
+
+    .button-red:hover, .button-red:focus {
+        @apply outline-none ring-2 ring-offset-2;
+    }
+
+ 
+    .btn-danger {
+        @apply button-red ;
+    }
+
+   
+}
