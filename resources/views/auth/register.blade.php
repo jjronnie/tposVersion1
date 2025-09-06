@@ -31,6 +31,8 @@
 </head>
 
 <body class="min-h-screen bg-[#eafff6] flex flex-col">
+    <!-- Preloader-->
+    @include('layouts.preloader')
     <div class="flex flex-col md:flex-row min-h-screen w-full">
         <!-- Left: Login Form -->
         <div class="w-full md:w-[45%] bg-white flex flex-col justify-center px-6 py-12 sm:px-10">

@@ -213,6 +213,8 @@
 </head>
 
 <body class="bg-gray-900 text-white">
+    <!-- Preloader-->
+    @include('layouts.preloader')
 
     <!-- Navbar -->
     <header class="sticky top-0 z-50 glass-bg py-4 px-6 md:px-12 rounded-b-3xl shadow-lg">

@@ -32,6 +32,8 @@
 </head>
 
 <body class="min-h-screen bg-[#eafff6] flex flex-col">
+    <!-- Preloader-->
+    @include('layouts.preloader')
 
     <div class="flex flex-col md:flex-row min-h-screen w-full">
 

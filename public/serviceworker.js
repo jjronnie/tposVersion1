@@ -3,6 +3,7 @@ self.addEventListener('install', function (e) {
     caches.open('tpos').then(async function (cache) {
       const files = [
         '/',
+        'login',
         '/offline.html',
         'assets/css/main.css',
         '/assets/js/main.js',
