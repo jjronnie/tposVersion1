@@ -9,8 +9,11 @@
             @include('layouts.nav')
             <!-- Page content -->
             <main class="flex-1 p-4 sm:p-6 lg:p-8">
-               
-
+                @if (auth()->user() && auth()->user()->business->onTrial())
+                    @include('layouts.trial', [
+                        'daysLeft' => auth()->user()->business->trialDaysRemaining(),
+                    ])
+                @endif
 
                 {{ $slot }}
             </main>

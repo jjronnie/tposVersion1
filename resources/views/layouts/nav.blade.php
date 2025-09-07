@@ -164,7 +164,7 @@
 
                 <div class="hidden md:flex flex-col">
                     <span class="text-sm font-medium text-gray-500 capitalize">
-                        {{ ucfirst(strtolower(auth()->user()->name)) }}
+                        {{ ucfirst(strtolower(auth()->user()->business->name)) }}
                     </span>
 
                 </div>

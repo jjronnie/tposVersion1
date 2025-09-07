@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class stat-card extends Component
+class StatCard extends Component
 {
     /**
      * Create a new component instance.

@@ -35,14 +35,14 @@
     @include('layouts.preloader')
     <div class="flex flex-col md:flex-row min-h-screen w-full">
         <!-- Left: Login Form -->
-        <div class="w-full md:w-[45%] bg-white flex flex-col justify-center px-6 py-12 sm:px-10">
+        <div class="w-full md:w-1/3 bg-white flex flex-col justify-center px-6 py-12 sm:px-10">
             <div class="w-full max-w-md mx-auto px-10">
                 <div class="md:hidden mb-2 mx-auto flex items-center justify-center">
                     <img src="{{ asset('assets/img/logo.png') }}" alt="Tpos Logo" class=" w-62 h-62 object-contain" />
                 </div>
 
-                <h1 class="font-bold text-gray-800 mb-3 text-left text-xl">Create an account</h1>
-                <p class="text-gray-600 mb-6 text-left text-sm">Enter your credentials to create a free account for your
+                <h1 class="font-bold text-gray-800 mb-3 text-left text-xl">Create Account</h1>
+                <p class="text-gray-600 mb-6 text-left text-sm">Enter your credentials to create a free account to manage your
                     business. No Credit card Required</p>
 
                 <!-- Session Status -->
@@ -56,14 +56,14 @@
                 <form method="POST" action="{{ route('register') }}" class="space-y-4 ">
                     @csrf
 
-                    <!-- name -->
+                    <!--Business name -->
                     <div class="relative">
                         <input type="text" id="name" name="name" value="{{ old('name') }}" required
-                            autofocus placeholder="name"
+                            autofocus placeholder="Business Name"
                             class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 text-gray-800 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
                         <label for="name"
                             class="absolute left-4 top-2 text-gray-600 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
-                            Full Name
+                           Business Name
                         </label>
                         @error('name')
                             <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
@@ -82,43 +82,9 @@
                         @error('email')
                             <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
                         @enderror
-                    </div>
+                    </div>              
 
-                    <!-- phone -->
-                    <div class="relative">
-                        <input type="text" id="phone" name="phone" value="{{ old('phone') }}" required
-                            autofocus placeholder="phone"
-                            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 text-gray-800 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
-                        <label for="phone"
-                            class="absolute left-4 top-2 text-gray-600 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
-                            Pnone Number
-                        </label>
-                        @error('phone')
-                            <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
 
-                    <!-- Country Selection -->
-                    <div class="relative mb-6">
-                        <select id="country" name="country" required
-                            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 text-gray-800 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent">
-                            <option value="" disabled selected>--select--</option>
-
-                            @foreach (countries() as $code => $country)
-                                <option value="{{ $code }}">
-                                    {{ $country }}
-                                </option>
-                            @endforeach
-
-                        </select>
-                        <label for="country"
-                            class="absolute left-4 top-2 text-gray-600 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
-                            Country
-                        </label>
-                        @error('country')
-                            <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
 
                     <!-- Password -->
                     <div class="relative">
@@ -137,7 +103,7 @@
 
                     <!-- password_confirmation -->
                     <div class="relative">
-                        <input type="password" id="password_confirmation" name="password_confirmation" required
+                        <input type="password" name="password_confirmation" required placeholder=" Confirm Password"
                             class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 text-gray-800 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
 
                         <label for="password_confirmation"
@@ -150,18 +116,29 @@
                         @enderror
                     </div>
 
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" id="terms-and-conditions" name="terms-and-conditions" value="1"
+                            required class="rounded text-green-600 focus:ring-green-500 h-4 w-4" />
+                        <label for="terms-and-conditions" class="text-sm text-gray-700">
+                            I agree to the
+                            <a href="/terms-and-conditions" class="text-green-600 hover:text-blue-500 hover:underline">
+                                Terms and Conditions of Tpos
+                            </a>
+                        </label>
+                    </div>
+
                     <!-- Submit -->
                     <button type="submit"
                         class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition duration-200">
-                        Register
+                        Create Account
                     </button>
                 </form>
             </div>
             <p class="text-sm mt-4 text-center text-gray-600">Already Registered? <span
-                    class="text-green-500 underline "><a href="{{ route('login') }}"> Login Here</a></span></p>
+                    class="text-green-500  "><a href="{{ route('login') }}"> Login Here</a></span></p>
         </div>
 
-        <div class="hidden md:flex w-full md:w-[55%] relative flex-col justify-center items-center text-center px-10 py-24"
+        <div class="hidden md:flex w-full md:w-2/3 relative flex-col justify-center items-center text-center px-10 py-24"
             style="background-image: url('{{ asset('assets/img/banner.webp') }}'); background-size: cover; background-position: center;">
 
             {{-- Overlay to darken the background image --}}
@@ -179,7 +156,7 @@
         </div>
     </div>
     @vite('resources/js/app.js')
-       <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class dropdown-actions extends Component
+class ConfirmModal extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class dropdown-actions extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dropdown-actions');
+        return view('components.confirm-modal');
     }
 }

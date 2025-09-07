@@ -21,76 +21,67 @@
 
     <!-- Scrollable Navigation Area -->
 
-    @php
-        $route = request()->route()->getName();
-    @endphp
+
 
     <div class="flex-1 overflow-y-auto no-scrollbar">
         <nav class="p-4 space-y-1">
-
             {{-- Dashboard --}}
-            @php
-                $active = str_starts_with($route, 'dashboard')
-                    ? 'bg-blue-700 text-white'
-                    : 'text-white hover:bg-blue-800';
-            @endphp
+
             <a href="{{ route('dashboard') }}"
-                class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ $active }}">
+                class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ">
                 <i data-lucide="layout-dashboard" class="w-4 h-4 text-white"></i>
                 <span>Dashboard</span>
             </a>
+            <div class="space-y-1">
 
-        <div class="space-y-1">
-   
+                <a href="#"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                    <i data-lucide="package" class="w-4 h-4 text-white"></i>
+                    <span>Products</span>
+                </a>
 
-    <a href="#"
-       class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
-        <i data-lucide="package" class="w-4 h-4 text-white"></i>
-        <span>Products</span>
-    </a>
+                <a href="#"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                    <i data-lucide="shopping-cart" class="w-4 h-4 text-white"></i>
+                    <span>Sales</span>
+                </a>
 
-    <a href="#"
-       class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
-        <i data-lucide="shopping-cart" class="w-4 h-4 text-white"></i>
-        <span>Sales</span>
-    </a>
+                <a href="#"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                    <i data-lucide="users" class="w-4 h-4 text-white"></i>
+                    <span>Customers</span>
+                </a>
 
-    <a href="#"
-       class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
-        <i data-lucide="users" class="w-4 h-4 text-white"></i>
-        <span>Customers</span>
-    </a>
+                <a href="#"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                    <i data-lucide="truck" class="w-4 h-4 text-white"></i>
+                    <span>Purchases</span>
+                </a>
 
-    <a href="#"
-       class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
-        <i data-lucide="truck" class="w-4 h-4 text-white"></i>
-        <span>Purchases</span>
-    </a>
+                <a href="#"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                    <i data-lucide="building-2" class="w-4 h-4 text-white"></i>
+                    <span>Suppliers</span>
+                </a>
 
-    <a href="#"
-       class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
-        <i data-lucide="building-2" class="w-4 h-4 text-white"></i>
-        <span>Suppliers</span>
-    </a>
+                <a href="#"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                    <i data-lucide="wrench" class="w-4 h-4 text-white"></i>
+                    <span>Tools</span>
+                </a>
 
-    <a href="#"
-       class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
-        <i data-lucide="wrench" class="w-4 h-4 text-white"></i>
-        <span>Tools</span>
-    </a>
+                <a href="{{ route('business.settings') }}"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium ">
+                    <i data-lucide="settings" class="w-4 h-4 text-white"></i>
+                    <span>Settings</span>
+                </a>
 
-    <a href="#"
-       class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
-        <i data-lucide="settings" class="w-4 h-4 text-white"></i>
-        <span>Settings</span>
-    </a>
-
-    <a href="#"
-       class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
-        <i data-lucide="bar-chart-3" class="w-4 h-4 text-white"></i>
-        <span>Statistics</span>
-    </a>
-</div>
+                <a href="#"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                    <i data-lucide="bar-chart-3" class="w-4 h-4 text-white"></i>
+                    <span>Statistics</span>
+                </a>
+            </div>
 
 
 

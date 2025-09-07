@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Business;
+use App\Models\Subscription;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
@@ -31,19 +34,44 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-               'phone' => ['required', 'string', 'max:20'],
-            'country' => ['required', 'string'], 
+           
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phone' => $request->phone,
-            'country' => $request->country,
+        DB::transaction(function () use ($request, &$user, &$business) {
+
+            // 1. Create business automatically
+
+            $business = Business::create([
+                 'name' => $request->name,
+                  'short_name' => $request->name,
+                'currency' => 'USD',  
+                
+            ]);
+
+            $user = User::create([
+                'name' => "Admin",
+                'email' => $request->email,
+                'password' => Hash::make($request->password),               
+                'business_id' => $business->id,
+            ]);
+
+         
+
+             // Create 1-month free trial subscription
+        $business->subscriptions()->create([
+            'subscription_plan_id' => null,          // no plan during trial
+            'billing_cycle' => 'monthly',
+            'trial_ends_at' => now()->addMonth(),    // trial ends in 1 month
+            'starts_at' => null,                     // will be set when plan starts
+            'ends_at' => null,                       // will be set when plan starts
+            'payment_method' => null,
+            'is_active' => true,
+            'auto_renew' => false,
         ]);
+
+        });
 
         event(new Registered($user));
 

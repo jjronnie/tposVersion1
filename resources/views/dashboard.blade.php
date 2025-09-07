@@ -6,30 +6,7 @@
       
      </div>
 
-     <section class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-    <!-- Left: Icon + Text -->
-    <div class="flex items-start md:items-center gap-3">
-    
-         <i data-lucide="crown" class="w-6 h-6 text-yellow-500"></i>
-
-        <div>
-            <h3 class="text-sm font-semibold text-gray-800">Trial Plan</h3>
-            <p class="text-sm text-gray-600">
-                You are on trial version! Your trial ends on 
-                <span class="font-medium text-gray-900">17-06-2026</span>
-            </p>
-        </div>
-    </div>
-
-    <!-- Right: Button -->
-    <div>
-        <a href="#"
-           class="btn">
-            Change Plan
-      <i data-lucide="chevrons-right" class="w-5 h-5 ml-2 text-white"></i>
-        </a>
-    </div>
-</section>
+ 
 
 
 

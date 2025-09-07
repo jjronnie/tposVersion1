@@ -21,11 +21,19 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name',
+        'business_id',
+        'is_suspended',
         'email',
          'phone',
-        'country',
         'password',
     ];
+
+      // Each user belongs to one business
+    public function business()
+    {
+        return $this->belongsTo(Business::class);
+    }
+    
 
     /**
      * The attributes that should be hidden for serialization.

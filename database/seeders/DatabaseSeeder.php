@@ -14,16 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::updateOrCreate(
-            ['email' => 'ronaldjjuuko7@gmail.com'],
-            [
-                'name' => 'JRonnie',
-                'email' => 'ronaldjjuuko7@gmail.com',
-                'phone' => '0703283529',
-                'country' => 'UG',
-                'password' => Hash::make('88928892'), 
-                'email_verified_at' => now(),
-            ]
-        );
+         $this->call(SubscriptionPlanSeeder::class);
+        $this->call(BusinessSeeder::class);
+       
+
     }
 }
