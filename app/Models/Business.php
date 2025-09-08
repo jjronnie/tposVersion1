@@ -16,12 +16,14 @@ class Business extends Model
         'short_name',
         'currency',
         'email',
-        'phone_number',
+        'phone',
         'address',
         'timezone',
         'tin_no',
         'website',
-        'logo_path',
+        'logo_path',        
+        'country',
+     
     ];
 
 

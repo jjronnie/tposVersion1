@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BusinessController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -15,6 +16,10 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::get('/business/settings', [BusinessController::class, 'index'])->name('business.settings');
+
+
+
+Route::put('/businesses/{business}', [BusinessController::class, 'update'])->name('business.update');
     
     
     
