@@ -70,17 +70,25 @@
                     <span>Tools</span>
                 </a>
 
+                <a href="#"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                    <i data-lucide="bar-chart-3" class="w-4 h-4 text-white"></i>
+                    <span>Statistics</span>
+                </a>
+
+                <a href="{{  route('business.users.index') }}"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                    <i data-lucide="users" class="w-4 h-4 text-white"></i>
+                    <span>Users</span>
+                </a>
+
                 <a href="{{ route('business.settings') }}"
                     class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium ">
                     <i data-lucide="settings" class="w-4 h-4 text-white"></i>
                     <span>Settings</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
-                    <i data-lucide="bar-chart-3" class="w-4 h-4 text-white"></i>
-                    <span>Statistics</span>
-                </a>
+                
             </div>
 
 

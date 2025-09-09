@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,6 +17,7 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::get('/business/settings', [BusinessController::class, 'index'])->name('business.settings');
+    Route::get('/business/users', [UserController::class, 'index'])->name('business.users.index');
 
 
 
