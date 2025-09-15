@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <meta name="googlebot" content="noindex, nofollow">
      <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Arrow Security Systems - HRMS</title>
+     <title>TPOS: The Next-Gen POS Software</title>
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,10 +39,13 @@
 
 </head>
 
-<body class="font-sans text-gray-900 bg-blue-50  m-0 p-0">
+<body class="font-sans   m-0 p-0">
 
     <!-- Preloader-->
+    @if (!request()->routeIs(['login', 'register']))
     @include('layouts.preloader')
+@endif
+
 
 
 

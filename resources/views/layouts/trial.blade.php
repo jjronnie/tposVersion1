@@ -6,7 +6,7 @@
 
 @if($daysLeft !== null && $daysLeft > 0)
     <!-- Trial active -->
-    <section class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+    <section class="bg-yellow-50 border border-yellow-200 dark:bg-amber-100 text-gray-900 rounded-lg p-4 mb-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
         <div class="flex items-start md:items-center gap-3">
             <i data-lucide="crown" class="w-6 h-6 text-yellow-500"></i>
 

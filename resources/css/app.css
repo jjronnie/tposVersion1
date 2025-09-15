@@ -48,3 +48,42 @@
 
    
 }
+
+
+
+
+/* Global typography and colors */
+@layer base {
+  /* Light mode defaults */
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+
+  h1 {
+    @apply text-4xl font-bold ;
+  }
+  h2 {
+    @apply text-3xl font-semibold ;
+  }
+  h3 {
+    @apply text-2xl font-semibold ;
+  }
+  p {
+    @apply text-base leading-relaxed ;
+  }
+  a {
+    @apply  hover:bg-blue-800;
+  }
+
+  /* Dark mode overrides – automatic with system */
+  @media (prefers-color-scheme: dark) {
+    body {
+      @apply bg-gray-900 text-gray-100;
+    }
+
+    a {
+      @apply  hover:bg-blue-800;
+    }
+  }
+}
+
