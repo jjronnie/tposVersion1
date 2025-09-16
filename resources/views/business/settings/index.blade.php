@@ -81,7 +81,7 @@
 
             @include('business.settings.partials.business-settings')
 
-        
+
 
 
 
@@ -91,20 +91,18 @@
                 <form class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium ">Name <span
-                                    class="text-red-500">*</span></label>
+                            <label class="block text-sm font-medium ">Name <span class="text-red-500">*</span></label>
                             <input type="text" value="{{ $user->name }}"
                                 class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                         </div>
                         <div>
-                            <label class="block text-sm font-medium ">Email <span
-                                    class="text-red-500">*</span></label>
+                            <label class="block text-sm font-medium ">Email <span class="text-red-500">*</span></label>
                             <input type="email" value="{{ $user->email }}" disabled
                                 class="mt-1 block w-full bg-gray-100 border-gray-300 rounded-md shadow-sm sm:text-sm" />
                         </div>
                     </div>
 
-                       <div>
+                    <div>
                         <label class="block text-sm font-medium ">Phone Number</label>
                         <input type="text" value="{{ $user->phone }}"
                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
@@ -119,7 +117,7 @@
                         <p class="text-xs  mt-1">Leave blank if you don't want to update password.</p>
                     </div>
 
-                 
+
 
                     <div>
                         <label class="block text-sm font-medium ">Profile Image</label>
@@ -153,13 +151,11 @@
                 <h1 class="text-2xl font-bold mb-4">Taxes</h1>
                 <p>Content for the Taxes tab.</p>
             </div>
-            <div x-show="activeTab === 'Currencies'"
-                class="max-w-3xl mx-auto  rounded-lg shadow p-6 space-y-6">
+            <div x-show="activeTab === 'Currencies'" class="max-w-3xl mx-auto  rounded-lg shadow p-6 space-y-6">
                 <h1 class="text-2xl font-bold mb-4">Currencies</h1>
                 <p>Content for the Currencies tab.</p>
             </div>
-            <div x-show="activeTab === 'Payment Modes'"
-                class="max-w-3xl mx-auto  rounded-lg shadow p-6 space-y-6">
+            <div x-show="activeTab === 'Payment Modes'" class="max-w-3xl mx-auto  rounded-lg shadow p-6 space-y-6">
                 <h1 class="text-2xl font-bold mb-4">Payment Modes</h1>
                 <p>Content for the Payment Modes tab.</p>
             </div>
@@ -167,13 +163,11 @@
                 <h1 class="text-2xl font-bold mb-4">Units</h1>
                 <p>Content for the Units tab.</p>
             </div>
-            <div x-show="activeTab === 'Custom Fields'"
-                class="max-w-3xl mx-auto  rounded-lg shadow p-6 space-y-6">
+            <div x-show="activeTab === 'Custom Fields'" class="max-w-3xl mx-auto  rounded-lg shadow p-6 space-y-6">
                 <h1 class="text-2xl font-bold mb-4">Custom Fields</h1>
                 <p>Content for the Custom Fields tab.</p>
             </div>
-            <div x-show="activeTab === 'Email Settings'"
-                class="max-w-3xl mx-auto  rounded-lg shadow p-6 space-y-6">
+            <div x-show="activeTab === 'Email Settings'" class="max-w-3xl mx-auto  rounded-lg shadow p-6 space-y-6">
                 <h1 class="text-2xl font-bold mb-4">Email Settings</h1>
                 <p>Content for the Email Settings tab.</p>
             </div>
