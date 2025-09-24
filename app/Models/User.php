@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Jenssegers\Agent\Agent;
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -29,6 +32,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'profile_photo_path',
     ];
+
+    
 
     // Each user belongs to one business
     public function business()
@@ -59,4 +64,48 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+
+
+
+    // app/Models/User.php
+
+
+
+// ... other imports ...
+
+public function getAllSessionsAttribute()
+{
+    if (config('session.driver') !== 'database') {
+        return [];
+    }
+
+    $sessions = DB::table(config('session.table', 'sessions'))
+        ->where('user_id', $this->id)
+        ->get();
+
+    return $sessions->map(function ($session) {
+        $payload = base64_decode($session->payload);
+        $data = @unserialize($payload);
+        
+        // Return structured session data, you might need to adjust this depending on your Laravel version
+        return [
+            'ip_address' => $session->ip_address,
+            'user_agent' => $session->user_agent,
+           'last_active' => $session->last_activity,
+            'agent' => $this->parseSessionUserAgent($session->user_agent)
+        ];
+    })->toArray();
+}
+
+protected function parseSessionUserAgent($userAgent)
+{
+    // A simple method to parse user agent string for demonstration
+    $agent = new Agent();
+    $agent->setUserAgent($userAgent);
+
+    return [
+        'platform' => $agent->platform(),
+        'browser' => $agent->browser()
+    ];
+}
 }

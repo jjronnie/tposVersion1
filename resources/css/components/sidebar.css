@@ -8,16 +8,16 @@
 }
 
 .sidebar-link {
-  @apply flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors;
+  @apply flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium;
+
+  
 }
 
 .sidebar-link-active {
   @apply bg-blue-700 text-white;
 }
 
-.sidebar-link-inactive {
-  @apply text-white hover:bg-blue-800;
-}
+
 
 .sidebar-dropdown {
   @apply w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors;
@@ -29,6 +29,3 @@
 
 
 
-.sidebar-sub-link-inactive {
-  @apply text-white hover:bg-blue-700;
-}

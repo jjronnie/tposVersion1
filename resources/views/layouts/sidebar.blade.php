@@ -27,68 +27,67 @@
         <nav class="p-4 space-y-1">
             {{-- Dashboard --}}
 
-            <a href="{{ route('dashboard') }}" class="sidebar-link  ">
+            {{-- Dashboard --}}
+            <a href="{{ route('dashboard') }}"
+                class="sidebar-link {{ request()->routeIs('dashboard') ? 'sidebar-link-active' : '' }}">
                 <i data-lucide="layout-dashboard" class="w-4 h-4 text-white"></i>
                 <span>Dashboard</span>
             </a>
             <div class="space-y-1">
 
-                <a href="#"
-                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                <a href="#" class="sidebar-link">
                     <i data-lucide="package" class="w-4 h-4 text-white"></i>
                     <span>Products</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                <a href="#" class="sidebar-link">
                     <i data-lucide="shopping-cart" class="w-4 h-4 text-white"></i>
                     <span>Sales</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+              
+                    {{-- Customers --}}
+                <a href="{{ route('customers.index') }}"
+                    class="sidebar-link {{ request()->routeIs('customers.*') ? 'sidebar-link-active' : '' }}">
                     <i data-lucide="users" class="w-4 h-4 text-white"></i>
                     <span>Customers</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                <a href="#" class="sidebar-link">
                     <i data-lucide="truck" class="w-4 h-4 text-white"></i>
                     <span>Purchases</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                <a href="#" class="sidebar-link">
                     <i data-lucide="building-2" class="w-4 h-4 text-white"></i>
                     <span>Suppliers</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                <a href="#" class="sidebar-link">
                     <i data-lucide="wrench" class="w-4 h-4 text-white"></i>
                     <span>Tools</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+                <a href="#" class="sidebar-link">
                     <i data-lucide="bar-chart-3" class="w-4 h-4 text-white"></i>
                     <span>Statistics</span>
                 </a>
 
-                <a href="{{  route('business.users.index') }}"
-                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium">
+
+                {{-- Users --}}
+                <a href="{{ route('users.index') }}"
+                    class="sidebar-link {{ request()->routeIs('users.*') ? 'sidebar-link-active' : '' }}">
                     <i data-lucide="users" class="w-4 h-4 text-white"></i>
                     <span>Users</span>
                 </a>
 
+
+                {{-- Settings --}}
                 <a href="{{ route('business.settings') }}"
-                    class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-blue-800 text-white text-sm font-medium ">
+                    class="sidebar-link {{ request()->routeIs('business.settings') ? 'sidebar-link-active' : '' }}">
                     <i data-lucide="settings" class="w-4 h-4 text-white"></i>
                     <span>Settings</span>
                 </a>
-
-
-
 
 
                 <!-- Sidebar Footer -->
@@ -98,15 +97,10 @@
                         <i data-lucide="ticket" class="w-5 h-5 text-white"></i>
                         <span class="text-sm font-medium">Raise a Ticket</span>
                     </a>
-                </div>         
+                </div>
 
-           </div>    </div>
+            </div>
+    </div>
     </nav>
-
-
-
-
-
-
 
 </div>
