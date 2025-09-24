@@ -3,25 +3,28 @@ import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-darkMode: 'media',
-content: [
-'./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-'./storage/framework/views/*.php',
-'./resources/views/**/*.blade.php',
-'./resources/**/*.blade.php',
-'./resources/**/*.js',
-'./resources/**/*.vue',
-],
+    content: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue',
+    ],
 
-theme: {
-extend: {
-fontFamily: {
-sans: ['"Nunito Sans"', 'sans-serif'],
-},
-},
-},
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['"Nunito Sans"', 'sans-serif'],
+            },
 
-plugins: [forms],
+            colors: {
+                primary: "#001529",
+            },
+        },
+    },
+
+    plugins: [forms],
 };
 
 

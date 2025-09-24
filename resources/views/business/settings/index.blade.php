@@ -1,78 +1,33 @@
 <x-app-layout>
 
     <div x-data="{ activeTab: 'Business' }" class="min-h-screen flex flex-col md:flex-row">
-        <aside class="w-full md:w-64 border-r border-gray-200">
-            <nav class="flex flex-col p-4 space-y-2">
-                <h2 class="text-lg font-semibold mb-4">Settings</h2>
+    <aside class="w-full md:w-64 border-r border-gray-200 bg-white">
+    <nav class="flex flex-col p-4 space-y-2">
+        <h2 class="text-lg font-semibold mb-4">Settings</h2>
 
-                <a @click.prevent="activeTab = 'Business'" href="#"
-                    :class="{
-                        'font-semibold bg-blue-600  ': activeTab === 'Business'
-                    }"
-                    class="flex items-center gap-2 p-2 rounded  transition-colors">
-                    <i class="fas fa-warehouse"></i> Business Settings
-                </a>
+        <template x-for="tab in [
+            { name: 'Business', icon: 'fas fa-warehouse' },
+            { name: 'Profile', icon: 'fas fa-user' },
+            { name: 'Roles & Permissions', icon: 'fas fa-user-shield' },
+            { name: 'Taxes', icon: 'fas fa-calendar' },
+            { name: 'Currencies', icon: 'fas fa-coins' },
+            { name: 'Payment Modes', icon: 'fas fa-credit-card' },
+            { name: 'Units', icon: 'fas fa-ruler' },
+            { name: 'Custom Fields', icon: 'fas fa-pencil-alt' },
+            { name: 'Email Settings', icon: 'fas fa-envelope' }
+        ]" :key="tab.name">
+            <a @click.prevent="activeTab = tab.name" href="#"
+               :class="activeTab === tab.name 
+                        ? 'bg-blue-600 text-white font-semibold' 
+                        : 'text-gray-700 hover:bg-gray-100'"
+               class="flex items-center gap-2 p-2 rounded transition-colors">
+                <i :class="tab.icon"></i> 
+                <span x-text="tab.name"></span>
+            </a>
+        </template>
+    </nav>
+</aside>
 
-                <a @click.prevent="activeTab = 'Profile'" href="#"
-                    :class="{
-                        'font-semibold bg-blue-600  ': activeTab === 'Profile'
-                    }"
-                    class="flex items-center gap-2 p-2 rounded  transition-colors">
-                    <i class="fas fa-user"></i> Profile
-                </a>
-
-
-                <a @click.prevent="activeTab = 'Roles & Permissions'" href="#"
-                    :class="{
-                        'font-semibold bg-blue-600  ': activeTab === 'Roles & Permissions'
-                    }"
-                    class="flex items-center gap-2 p-2 rounded  transition-colors">
-                    <i class="fas fa-user-shield"></i> Role & Permissions
-                </a>
-                <a @click.prevent="activeTab = 'Taxes'" href="#"
-                    :class="{
-                        'font-semibold bg-blue-600  ': activeTab === 'Taxes'
-                    }"
-                    class="flex items-center gap-2 p-2 rounded  transition-colors">
-                    <i class="fas fa-calendar"></i> Taxes
-                </a>
-                <a @click.prevent="activeTab = 'Currencies'" href="#"
-                    :class="{
-                        'font-semibold bg-blue-600  ': activeTab === 'Currencies'
-                    }"
-                    class="flex items-center gap-2 p-2 rounded  transition-colors">
-                    <i class="fas fa-coins"></i> Currencies
-                </a>
-                <a @click.prevent="activeTab = 'Payment Modes'" href="#"
-                    :class="{
-                        'font-semibold bg-blue-600  ': activeTab === 'Payment Modes'
-                    }"
-                    class="flex items-center gap-2 p-2 rounded  transition-colors">
-                    <i class="fas fa-credit-card"></i> Payment Modes
-                </a>
-                <a @click.prevent="activeTab = 'Units'" href="#"
-                    :class="{
-                        'font-semibold bg-blue-600  ': activeTab === 'Units'
-                    }"
-                    class="flex items-center gap-2 p-2 rounded  transition-colors">
-                    <i class="fas fa-ruler"></i> Units
-                </a>
-                <a @click.prevent="activeTab = 'Custom Fields'" href="#"
-                    :class="{
-                        'font-semibold bg-blue-600  ': activeTab === 'Custom Fields'
-                    }"
-                    class="flex items-center gap-2 p-2 rounded  transition-colors">
-                    <i class="fas fa-pencil-alt"></i> Custom Fields
-                </a>
-                <a @click.prevent="activeTab = 'Email Settings'" href="#"
-                    :class="{
-                        'font-semibold bg-blue-600  ': activeTab === 'Email Settings'
-                    }"
-                    class="flex items-center gap-2 p-2 rounded  transition-colors">
-                    <i class="fas fa-envelope"></i> Email Settings
-                </a>
-            </nav>
-        </aside>
 
         <main class="flex-1 p-6 bg-gray-50">
 

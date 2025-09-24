@@ -1,16 +1,17 @@
 <x-guest-layout>
    
     <div class="flex flex-col md:flex-row min-h-screen w-full">
-        <!-- Left: register Form -->
-        <div class="w-full md:w-1/3  flex flex-col justify-center px-6 py-12 sm:px-10">
+        <!-- Left: Register Form -->
+        <div class="w-full md:w-1/3 flex flex-col justify-center px-6 py-12 sm:px-10">
             <div class="w-full max-w-md mx-auto px-10">
                 <div class="md:hidden mb-2 mx-auto flex items-center justify-center">
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="Tpos Logo" class=" w-62 h-62 object-contain" />
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Tpos Logo" class="w-62 h-62 object-contain" />
                 </div>
 
-                <h1 class="font-bold  mb-3 text-left text-xl">Create Account</h1>
-                <p class=" mb-6 text-left text-sm">Enter your credentials to create a free account to manage your
-                    business. No Credit card Required</p>
+                <h1 class="font-bold mb-3 text-left text-xl">Create Account</h1>
+                <p class="mb-6 text-left text-sm">
+                    Enter your credentials to create a free account to manage your business. No Credit card Required
+                </p>
 
                 <!-- Session Status -->
                 @if (session('status'))
@@ -19,98 +20,101 @@
                     </div>
                 @endif
 
-             <!-- Register Form -->
-<form method="POST" action="{{ route('register') }}" class="space-y-4">
-    @csrf
+                <!-- Register Form -->
+                <form method="POST" action="{{ route('register') }}" class="space-y-4">
+                    @csrf
 
-    <!-- Business Name -->
-    <div class="relative">
-        <input type="text" id="name" name="name" value="{{ old('name') }}" required
-            autofocus placeholder="Business Name"
-            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
-        <label for="name"
-            class="absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600 dark:peer-focus:text-green-400">
-            Business Name
-        </label>
-        @error('name')
-            <p class="text-red-600 text-sm mt-2 dark:text-red-400">{{ $message }}</p>
-        @enderror
-    </div>
+                    <!-- Business Name -->
+                    <div class="relative">
+                        <input type="text" id="name" name="name" value="{{ old('name') }}" required
+                            autofocus placeholder="Business Name"
+                            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
+                        <label for="name"
+                            class="absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
+                            Business Name
+                        </label>
+                        @error('name')
+                            <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-    <!-- Email -->
-    <div class="relative">
-        <input type="email" id="email" name="email" value="{{ old('email') }}" required
-            autofocus placeholder="Email"
-            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
-        <label for="email"
-            class="absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600 dark:peer-focus:text-green-400">
-            Email
-        </label>
-        @error('email')
-            <p class="text-red-600 text-sm mt-2 dark:text-red-400">{{ $message }}</p>
-        @enderror
-    </div>              
+                    <!-- Email -->
+                    <div class="relative">
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" required
+                            placeholder="Email"
+                            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
+                        <label for="email"
+                            class="absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
+                            Email
+                        </label>
+                        @error('email')
+                            <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>              
 
-    <!-- Password -->
-    <div class="relative">
-        <input type="password" id="password" name="password" required placeholder="Password"
-            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
-        <label for="password"
-            class="absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600 dark:peer-focus:text-green-400">
-            Password
-        </label>
-        @error('password')
-            <p class="text-red-600 text-sm mt-2 dark:text-red-400">{{ $message }}</p>
-        @enderror
-    </div>
+                    <!-- Password -->
+                    <div class="relative">
+                        <input type="password" id="password" name="password" required placeholder="Password"
+                            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
+                        <label for="password"
+                            class="absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
+                            Password
+                        </label>
+                        @error('password')
+                            <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-    <!-- Confirm Password -->
-    <div class="relative">
-        <input type="password" name="password_confirmation" required placeholder="Confirm Password"
-            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
-        <label for="password_confirmation"
-            class="absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600 dark:peer-focus:text-green-400">
-            Confirm Password
-        </label>
-        @error('password')
-            <p class="text-red-600 text-sm mt-2 dark:text-red-400">{{ $message }}</p>
-        @enderror
-    </div>
+                    <!-- Confirm Password -->
+                    <div class="relative">
+                        <input type="password" name="password_confirmation" required placeholder="Confirm Password"
+                            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
+                        <label for="password_confirmation"
+                            class="absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
+                            Confirm Password
+                        </label>
+                        @error('password_confirmation')
+                            <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-    <!-- Terms -->
-    <div class="flex items-center space-x-2">
-        <input type="checkbox" id="terms-and-conditions" name="terms-and-conditions" value="1"
-            required class="rounded text-green-600 focus:ring-green-500 h-4 w-4" />
-        <label for="terms-and-conditions" class="text-sm text-gray-900 dark:text-gray-100">
-            I agree to the
-            <a href="/terms-and-conditions" class="text-green-600 hover:underline dark:text-green-400">
-                Terms and Conditions of Tpos
-            </a>
-        </label>
-    </div>
+                    <!-- Terms -->
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" id="terms-and-conditions" name="terms-and-conditions" value="1"
+                            required class="rounded text-green-600 focus:ring-green-500 h-4 w-4" />
+                        <label for="terms-and-conditions" class="text-sm text-gray-900">
+                            I agree to the
+                            <a href="/terms-and-conditions" class="text-green-600 hover:underline">
+                                Terms and Conditions of Tpos
+                            </a>
+                        </label>
+                    </div>
 
-    <!-- Submit -->
-    <button type="submit"
-        class="w-full py-3 register-button bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white font-semibold rounded-lg transition duration-200">
-        Create Account
-    </button>
-</form>
+                    <!-- Submit -->
+                    <button type="submit"
+                        class="w-full py-3 register-button bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition duration-200">
+                        Create Account
+                    </button>
+                </form>
 
             </div>
-            <p class="text-sm mt-4 text-center ">Already Registered? <span
-                    class="text-green-500  "><a href="{{ route('login') }}"> Login Here</a></span></p>
+            <p class="text-sm mt-4 text-center">
+                Already Registered?
+                <span class="text-green-500">
+                    <a href="{{ route('login') }}"> Login Here</a>
+                </span>
+            </p>
         </div>
 
+        <!-- Right: Banner -->
         <div class="hidden md:flex w-full md:w-2/3 relative flex-col justify-center items-center text-center px-10 py-24"
             style="background-image: url('{{ asset('assets/img/banner.webp') }}'); background-size: cover; background-position: center;">
 
-            {{-- Overlay to darken the background image --}}
-            <div class="absolute inset-0 bg-black opacity-50"></div> {{-- Adjust opacity-XX for desired darkness --}}
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black opacity-50"></div>
 
-            {{-- Content on top of the darkened image --}}
+            <!-- Content -->
             <img src="{{ asset('assets/img/tpos1.png') }}" alt=" Logo" class="h-[210px] mb-0 relative z-10" />
-
-            {{-- <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 relative z-10">Track. Record. Grow.</h2> --}}
 
             <p class="max-w-2xl text-white text-base md:text-lg leading-relaxed px-4 relative z-10">
                 Transform Your Business with T-POS | The complete point-of-sale solution designed to streamline your
@@ -119,9 +123,8 @@
         </div>
     </div>
 
-
     <script>
-          // Add loading state to register button
+        // Add loading state to register button
         document.querySelector('form').addEventListener('submit', function(e) {
             const button = document.querySelector('.register-button');
             button.innerHTML = `
@@ -133,5 +136,5 @@
             `;
             button.disabled = true;
         });
-</script>
+    </script>
 </x-guest-layout>

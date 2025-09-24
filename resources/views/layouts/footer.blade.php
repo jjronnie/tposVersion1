@@ -13,7 +13,7 @@
         x-show="quickAccessOpen" 
         x-transition 
         x-cloak
-        class="absolute bottom-16 right-0 w-64 rounded-lg shadow-lg border bg-white   dark:bg-gray-800 border-gray-200 dark:border-gray-800">
+        class="absolute bottom-16 right-0 w-64 rounded-lg shadow-lg border bg-white   border-gray-200 ">
 
         <div class="p-4">
             <h3 class="text-sm font-medium  mb-3">Quick Access</h3>
@@ -92,9 +92,9 @@
 </div>
 
 
-<footer class=" border-t border-gray-200 dark:bg-gray-800 dark:border-gray-800 py-4">
+<footer class="bg-white border-t border-gray-200 py-4">
     <div
-        class="max-w-7xl mx-auto px-4 md:px-6 flex flex-col sm:flex-row justify-between items-center text-sm  space-y-2 sm:space-y-0">
+        class="max-w-7xl mx-auto px-4 md:px-6 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500 space-y-2 sm:space-y-0">
         <p>&copy; {{ date('Y') }} Arrow Security Systems. | All rights reserved.</p>
 
         <p>Version 1.0.0</p>

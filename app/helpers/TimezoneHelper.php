@@ -1,11 +1,5 @@
 <?php
 
-
-
-use DateTimeZone;
-use DateTime;
-
-
     function timezones()
     {
         $timezones = [];

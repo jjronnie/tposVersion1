@@ -10,13 +10,15 @@ class SlideForm extends Component
 {
 
     public $buttonText;
+    public $buttonIcon;
     public $title;
     /**
      * Create a new component instance.
      */
-    public function __construct($buttonText = 'Open Form', $title = 'Form')
+    public function __construct($buttonText = '',  $buttonIcon = '',   $title = 'Form')
     {
         $this->buttonText = $buttonText;
+        $this->buttonIcon = $buttonIcon;
         $this->title = $title;
     }
 

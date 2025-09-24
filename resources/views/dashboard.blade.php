@@ -1,10 +1,6 @@
 <x-app-layout>
 
- <!-- Page title -->
- <div class="space-y-2">
- <h1 class="text-2xl md:text-2xl font-bold text-gray-900 pb-4 m-0">Dashboard</h1>
-
- </div>
+<x-page-title />
 
  
 

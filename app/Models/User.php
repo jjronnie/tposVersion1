@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\Permission\Traits\HasRoles;
 
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -22,18 +23,19 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'business_id',
-        'is_suspended',
+        'status',
         'email',
-         'phone',
+        'phone',
         'password',
+        'profile_photo_path',
     ];
 
-      // Each user belongs to one business
+    // Each user belongs to one business
     public function business()
     {
         return $this->belongsTo(Business::class);
     }
-    
+
 
     /**
      * The attributes that should be hidden for serialization.

@@ -1,8 +1,8 @@
-<div class="w-80 lg:w-64 bg-[#001529] text-white flex flex-col fixed top-0 left-0 h-screen z-50 transform transition-transform duration-300 -translate-x-full lg:translate-x-0"
+<div class="w-80 lg:w-64 bg-primary text-white flex flex-col fixed top-0 left-0 h-screen z-40 lg:z-[10000] transform transition-transform duration-300 -translate-x-full lg:translate-x-0"
     id="sidebar">
     <!-- Sidebar Header -->
 
-    <div class="p-4 border-b border-blue-900 flex items-center justify-between">
+    <div class="sidebar-header">
         <div class="flex items-center space-x-3">
             <div class="w-full h-12  rounded-lg flex items-center justify-center text-white font-bold text-lg">
                 <span>
@@ -27,8 +27,7 @@
         <nav class="p-4 space-y-1">
             {{-- Dashboard --}}
 
-            <a href="{{ route('dashboard') }}"
-                class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ">
+            <a href="{{ route('dashboard') }}" class="sidebar-link  ">
                 <i data-lucide="layout-dashboard" class="w-4 h-4 text-white"></i>
                 <span>Dashboard</span>
             </a>
@@ -88,13 +87,22 @@
                     <span>Settings</span>
                 </a>
 
-                
-            </div>
 
 
 
-    </div>
+
+                <!-- Sidebar Footer -->
+                <div class="p-4 border-t border-blue-900">
+                    <a href="/support.html"
+                        class="flex items-center space-x-3 bg-blue-700 hover:bg-blue-800 text-white rounded-lg px-3 py-2 transition-colors no-underline">
+                        <i data-lucide="ticket" class="w-5 h-5 text-white"></i>
+                        <span class="text-sm font-medium">Raise a Ticket</span>
+                    </a>
+                </div>         
+
+           </div>    </div>
     </nav>
+
 
 
 
