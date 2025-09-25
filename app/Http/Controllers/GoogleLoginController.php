@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Models\Role;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeEmail;
 
 class GoogleLoginController extends Controller
 {
@@ -50,6 +52,14 @@ class GoogleLoginController extends Controller
                         'name' => $businessName,
                         'short_name' => null,
                         'currency' => 'USD',
+                        'email' => null,
+                        'phone' => null,
+                        'country' => null,
+                        'address' => null,
+                        'timezone' => null,
+                        'tin_no' => null,
+                        'website' => null,
+                        'logo_path' => null,
                     ]);
 
                     $user = User::create([
@@ -91,10 +101,19 @@ class GoogleLoginController extends Controller
                     ]);
                 });
 
+                // Send the welcome email with instructions
+                Mail::to($user->email)->send(new WelcomeEmail($user));
+
+
+
                 Auth::login($user);
             }
 
-            return redirect()->intended(route('dashboard'));
+            $name = auth()->user()->name;
+
+            return redirect()->intended(route('dashboard', absolute: false))
+                ->with('show_welcome', true)
+                ->with('success', "Login Successful. Welcome back $name!");
 
         } catch (\Exception $e) {
             // Handle any errors that occur during the authentication process
