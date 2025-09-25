@@ -125,10 +125,26 @@
         <div x-data="{ open: false, showLogoutModal: false }" class="relative">
             <!-- Trigger -->
             <button @click="open = !open" class="flex items-center space-x-3 pl-2 focus:outline-none">
+                @php
+                $photo = auth()->user()->profile_photo_path;
+                @endphp
+
+                @if ($photo)
+                @if (Str::startsWith($photo, ['http://', 'https://']))
+                <!-- Show remote (Google) photo -->
+                <img src="{{ $photo }}" alt="Profile" class="w-8 h-8 rounded-full object-cover">
+                @else
+                <!-- Show locally stored photo -->
+                <img src="{{ asset('storage/' . $photo) }}" alt="Profile" class="w-8 h-8 rounded-full object-cover">
+                @endif
+                @else
+                <!-- Fallback icon -->
                 <div class="p-2 rounded-lg text-blue-600 hover:bg-gray-100 transition-colors">
                     <i data-lucide="circle-user-round"></i>
                 </div>
+                @endif
             </button>
+
 
             <!-- Profile Dropdown -->
             <div x-show="open" @click.away="open = false" x-transition x-cloak

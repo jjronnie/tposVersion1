@@ -34,7 +34,7 @@ class GoogleLoginController extends Controller
             $googleUser = Socialite::driver('google')->user();
 
             // Find or create the user
-            $user = User::where('email', $googleUser->email)->first();
+            $user = User::where('email', $googleUser->getEmail())->first();
 
             if ($user) {
                 // User exists, log them in
@@ -44,19 +44,26 @@ class GoogleLoginController extends Controller
                 DB::transaction(function () use ($googleUser, &$user) {
                     // Create business automatically
                     $business = Business::create([
-                        'name' => $googleUser->name ?? 'New Business',
-                        'short_name' => $googleUser->name ?? 'New Business',
+                        'name' => $googleUser->getName() ?? 'New Business',
+                        'short_name' => null,
                         'currency' => 'USD',
                     ]);
 
                     $user = User::create([
                         'name' => "Admin",
-                        'email' => $googleUser->email,
+                        'email' => $googleUser->getEmail(),
+                        'profile_photo_path' => $googleUser->getAvatar(),
                         'password' => \Hash::make(\Str::random(24)), // Create a random password since we're using Google auth
                         'status' => 'active',
                         'business_id' => $business->id,
-                        'email_verified_at' => now(), // Auto-verify email for Google sign-in
+                        'signup_method' => 'google',
+
                     ]);
+
+                    // force email verification
+                    if (is_null($user->email_verified_at)) {
+                        $user->forceFill(['email_verified_at' => now()])->save();
+                    }
 
                     // Assign 'superadmin' role
                     $superadminRole = Role::where('name', 'superadmin')->first();
@@ -67,7 +74,7 @@ class GoogleLoginController extends Controller
                         // Log an error or create the role if necessary
                         \Log::error('Superadmin role not found. Please create it.');
                     }
-                    
+
                     // Create 1-month free trial subscription
                     $business->subscriptions()->create([
                         'subscription_plan_id' => null,

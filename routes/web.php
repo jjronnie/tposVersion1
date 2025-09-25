@@ -12,6 +12,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// Route to display the Privacy Policy page
+Route::get('/privacy-policy', function () {
+    return view('consent.policy');
+})->name('policy');
+
+// Route to display the Terms of Service page
+Route::get('/terms-and-conditions', function () {
+    return view('consent.terms');
+})->name('terms');
+
+
+
 // Google login routes
 Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
