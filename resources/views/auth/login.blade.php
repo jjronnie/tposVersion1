@@ -86,6 +86,18 @@
 
                 </form>
 
+   
+
+<!-- Google Sign In Button -->
+<a href="#"
+    class="w-full flex items-center justify-center gap-3 py-3 mt-4 border border-gray-300 rounded-full bg-white text-gray-700 font-medium shadow-sm hover:bg-gray-100 transition duration-300">
+    <img src="{{ asset('assets/img/g-logo.png') }}" alt="Google Logo" class="w-5 h-5">
+    <span>Sign in with Google</span>
+</a>
+
+
+
+
             </div>
             <p class="text-sm mt-4 text-center">Dont have an Account?
                 <span class="text-green-600 underline">
