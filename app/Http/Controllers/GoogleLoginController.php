@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Models\Role;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\WelcomeEmail;
+// use Illuminate\Support\Facades\Mail;
+// use App\Mail\WelcomeEmail;
 
 class GoogleLoginController extends Controller
 {
@@ -102,7 +102,7 @@ class GoogleLoginController extends Controller
                 });
 
                 // Send the welcome email with instructions
-                Mail::to($user->email)->send(new WelcomeEmail($user));
+                // Mail::to($user->email)->send(new WelcomeEmail($user));
 
 
 
