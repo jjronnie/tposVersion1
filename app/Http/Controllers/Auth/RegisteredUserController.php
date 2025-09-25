@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Business;
+use App\Models\Customer;
 use App\Models\Subscription;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -73,6 +74,18 @@ class RegisteredUserController extends Controller
                 'is_active' => true,
                 'auto_renew' => false,
             ]);
+
+             // 4. Create default Walk-in Customer
+        Customer::create([
+            'business_id' => $business->id,
+            'name' => 'Walk-in Customer',
+            'email' => null,
+            'phone' => null,
+            'address' => null,
+            'tin_number' => null,
+            'status' => 'enabled',
+            'created_by' => $user->id,
+        ]);
 
         });
 

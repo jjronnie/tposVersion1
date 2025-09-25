@@ -10,19 +10,21 @@ use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    use AuthorizesRequests;
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-     
+      $users = User::forBusiness()->paginate(50);
 
-        $users = auth()->user()->business->users;
+       
         $totalUsers = $users->count();
         return view('users.index', compact('users', 'totalUsers', ));
     }
@@ -83,7 +85,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+         $this->authorizeBusiness($user);
+
+         return view('users.show', compact('user'));
     }
 
     /**
@@ -91,8 +95,7 @@ class UserController extends Controller
      */
    public function edit(User $user)
 {
-
-    $this->authorize('view', $user);
+ $this->authorizeBusiness($user);
 
     $roles = Role::all();
     $permissions = Permission::all();
@@ -105,6 +108,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
 {
+
+    $this->authorizeBusiness($user);
+
+
     $validated = $request->validate([
         'name' => 'required|string|max:255',
         'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
@@ -137,8 +144,30 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+
+
+public function destroy(User $user)
+{
+    // Prevent a user from deleting their own account.
+    if ($user->id === Auth::id()) {
+        return redirect()->back()->with('error', 'You cannot delete your own account.');
+    }
+
+    // Protect the super admin role.
+    if ($user->hasRole('superadmin')) {
+        return redirect()->back()->with('error', 'Cannot delete a super admin.');
+    }
+
+    $this->authorizeBusiness($user);
+    $user->delete();
+
+    return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+}
+
+       private function authorizeBusiness(User $user)
     {
-        //
+        if ($user->business_id !== auth()->user()->business_id) {
+            abort(403, 'Unauthorized action.');
+        }
     }
 }

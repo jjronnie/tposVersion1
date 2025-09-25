@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Business;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -99,6 +100,19 @@ class GoogleLoginController extends Controller
                         'is_active' => true,
                         'auto_renew' => false,
                     ]);
+
+                    Customer::create([
+                        'business_id' => $business->id,
+                        'name' => 'Walk-in Customer',
+                        'email' => null,
+                        'phone' => null,
+                        'address' => null,
+                        'tin_number' => null,
+                        'status' => 'enabled',
+                        'created_by' => $user->id,
+                    ]);
+
+
                 });
 
                 // Send the welcome email with instructions

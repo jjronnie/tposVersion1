@@ -111,6 +111,9 @@
                 <a href="{{ route('users.edit', $user) }}" class="btn ">
                     <i data-lucide="edit" class="w-4 h-4 "></i>
                 </a>
+                    <x-confirm-modal :action="route('users.destroy', $user->id)"
+                        warning="Are you sure you want to delete this user? This action cannot be undone."
+                           triggerIcon="trash" />
                 </div>
             </x-table.cell>
         </x-table.row>

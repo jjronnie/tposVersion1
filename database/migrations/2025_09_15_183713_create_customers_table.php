@@ -12,11 +12,17 @@ return new class extends Migration {
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('business_id')->constrained()->cascadeOnDelete(); // tie to business
+            $table->foreignId('business_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('address')->nullable();
+            $table->string('tin_number')->nullable();
+            $table->enum('status', ['enabled', 'disabled'])->default('enabled');
+
+
             $table->timestamps();
         });
     }

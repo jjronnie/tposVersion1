@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('business_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
@@ -20,7 +21,7 @@ return new class extends Migration {
             $table->string('password');
             $table->string('status')->default('active');
             $table->string('profile_photo_path')->nullable();
-
+            $table->string('signup_method')->default('email');
             $table->rememberToken();
             $table->timestamps();
         });

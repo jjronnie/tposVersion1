@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 use Jenssegers\Agent\Agent;
 
 
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -35,6 +36,17 @@ class User extends Authenticatable implements MustVerifyEmail
         'signup_method',
     ];
 
+     public function scopeForBusiness($query, $businessId = null)
+    {
+        $businessId = $businessId ?? auth()->user()->business_id;
+        return $query->where('business_id', $businessId);
+    }
+
+    
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by')->withTrashed();
+    }
 
 
 
