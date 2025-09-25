@@ -43,14 +43,17 @@ class GoogleLoginController extends Controller
                 // User does not exist, create new user and business
                 DB::transaction(function () use ($googleUser, &$user) {
                     // Create business automatically
+
+                    $businessName = $googleUser->getName() ? $googleUser->getName() . "'s Business" : 'New Business';
+
                     $business = Business::create([
-                        'name' => $googleUser->getName() ?? 'New Business',
+                        'name' => $businessName,
                         'short_name' => null,
                         'currency' => 'USD',
                     ]);
 
                     $user = User::create([
-                        'name' => "Admin",
+                        'name' => $googleUser->getName() ?? 'Admin',
                         'email' => $googleUser->getEmail(),
                         'profile_photo_path' => $googleUser->getAvatar(),
                         'password' => \Hash::make(\Str::random(24)), // Create a random password since we're using Google auth
