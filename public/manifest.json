@@ -2,7 +2,7 @@
   "name": "TechTower Smart Pos",
   "short_name": "Tpos",
   "description": "An intelligent point of sale system for modern businesses.",
-  "start_url": "/",
+  "start_url": "/login",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",

@@ -139,7 +139,8 @@
                 <i data-lucide="circle-user-round" class="w-8 h-8"></i>
             </div>
             <div>
-                <p class="font-semibold">{{ ucfirst(strtolower(auth()->user()->name)) ?? '' }}</p>
+                <p class="font-semibold">{{ ucfirst(auth()->user()->name) ?? '' }}</p>
+                <p class="font-semibold">{{ ucfirst(auth()->user()->business->name) ?? '' }}</p>
                 <p class="text-sm text-gray-500">{{ auth()->user()->email ?? '' }}</p>
             </div>
         </div>
