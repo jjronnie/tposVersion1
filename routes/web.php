@@ -4,12 +4,18 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\GoogleLoginController;
 use Illuminate\Support\Facades\Route;
 
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+// Google login routes
+Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
+
 
 
 Route::get('/', function () {

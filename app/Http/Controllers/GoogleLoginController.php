@@ -2,9 +2,93 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Business;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
+use Spatie\Permission\Models\Role;
+use Illuminate\Validation\ValidationException;
 
 class GoogleLoginController extends Controller
 {
-    //
+    /**
+     * Redirect the user to the Google authentication page.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Handle the callback from Google authentication.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->user();
+
+            // Find or create the user
+            $user = User::where('email', $googleUser->email)->first();
+
+            if ($user) {
+                // User exists, log them in
+                Auth::login($user);
+            } else {
+                // User does not exist, create new user and business
+                DB::transaction(function () use ($googleUser, &$user) {
+                    // Create business automatically
+                    $business = Business::create([
+                        'name' => $googleUser->name ?? 'New Business',
+                        'short_name' => $googleUser->name ?? 'New Business',
+                        'currency' => 'USD',
+                    ]);
+
+                    $user = User::create([
+                        'name' => "Admin",
+                        'email' => $googleUser->email,
+                        'password' => \Hash::make(\Str::random(24)), // Create a random password since we're using Google auth
+                        'status' => 'active',
+                        'business_id' => $business->id,
+                        'email_verified_at' => now(), // Auto-verify email for Google sign-in
+                    ]);
+
+                    // Assign 'superadmin' role
+                    $superadminRole = Role::where('name', 'superadmin')->first();
+                    if ($superadminRole) {
+                        $user->assignRole($superadminRole);
+                    } else {
+                        // Handle case where superadmin role doesn't exist
+                        // Log an error or create the role if necessary
+                        \Log::error('Superadmin role not found. Please create it.');
+                    }
+                    
+                    // Create 1-month free trial subscription
+                    $business->subscriptions()->create([
+                        'subscription_plan_id' => null,
+                        'billing_cycle' => 'monthly',
+                        'trial_ends_at' => now()->addMonth(),
+                        'starts_at' => null,
+                        'ends_at' => null,
+                        'payment_method' => null,
+                        'is_active' => true,
+                        'auto_renew' => false,
+                    ]);
+                });
+
+                Auth::login($user);
+            }
+
+            return redirect()->intended(route('dashboard'));
+
+        } catch (\Exception $e) {
+            // Handle any errors that occur during the authentication process
+            return redirect(route('login'))->withErrors(['google_error' => 'Unable to authenticate with Google. Please try again.']);
+        }
+    }
 }

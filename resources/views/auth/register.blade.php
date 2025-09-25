@@ -7,11 +7,16 @@
                 <div class="md:hidden mb-2 mx-auto flex items-center justify-center">
                     <img src="{{ asset('assets/img/logo.png') }}" alt="Tpos Logo" class="w-62 h-62 object-contain" />
                 </div>
+                   <div class="text-center">
 
-                <h1 class="font-bold mb-3 text-left text-xl">Create Account</h1>
-                <p class="mb-6 text-left text-sm">
-                    Enter your credentials to create a free account to manage your business. No Credit card Required
+                <h1 class="font-bold mb-3  text-xl">Create Account</h1>
+
+                 @include('auth.google-button')
+
+                <p class="mb-6  text-sm">
+                    Enter your credentials to create a free account and get a <span class="text-green-500 font-bold"> 30 days free trial. </span> No Credit card Required
                 </p>
+                   </div>
 
                 <!-- Session Status -->
                 @if (session('status'))
