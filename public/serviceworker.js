@@ -8,7 +8,11 @@ self.addEventListener('install', function (e) {
         'assets/css/main.css',
         '/assets/js/main.js',
         '/favicon.webp',
-        '/assets/img/logo.png'
+        '/assets/img/logo.png',
+        '/banner.png',
+        '/landing/index.html',
+        '/landing/assets/index-B-JF9dM1.css',
+        '/landing/assets/index-OefAGoZ2.js'
       ];
       for (let file of files) {
         try {

@@ -7,9 +7,15 @@ use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    return file_get_contents(public_path('landing/index.html'));
+})->name('home');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,8 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 
 
-// routes/web.php
-Route::resource('customers', CustomerController::class);
+    // routes/web.php
+    Route::resource('customers', CustomerController::class);
 
 
 
