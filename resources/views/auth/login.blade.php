@@ -9,9 +9,22 @@
                 <div class="md:hidden mb-2 mx-auto flex items-center justify-center">
                     <img src="{{ asset('assets/img/logo.png') }}" alt="Tpos Logo" class="w-62 h-62 object-contain" />
                 </div>
+                <div class="text-center">
 
-                <h1 class="font-bold mb-3 text-left text-xl">Sign In</h1>
-                <p class="mb-6 text-left text-sm">Enter your credentials to login</p>
+                <h1 class="font-bold mb-3  text-xl">Sign In to your account</h1>
+
+                <!-- Google Sign In Button -->
+<a href="#"
+    class="w-full flex items-center justify-center gap-3 py-3 mt-4 border border-gray-300 rounded-full bg-white text-gray-700 font-medium shadow-sm hover:bg-gray-100 transition duration-300">
+    <img src="{{ asset('assets/img/g-logo.png') }}" alt="Google Logo" class="w-5 h-5">
+    <span>Sign in with Google</span>
+</a>
+
+
+                <p class="m-4 text-sm">OR</p>
+                <p class="mb-6  text-sm">Enter your credentials</p>
+
+                </div>
 
                 <!-- Session Status -->
                 @if (session('status'))
@@ -88,12 +101,7 @@
 
    
 
-<!-- Google Sign In Button -->
-<a href="#"
-    class="w-full flex items-center justify-center gap-3 py-3 mt-4 border border-gray-300 rounded-full bg-white text-gray-700 font-medium shadow-sm hover:bg-gray-100 transition duration-300">
-    <img src="{{ asset('assets/img/g-logo.png') }}" alt="Google Logo" class="w-5 h-5">
-    <span>Sign in with Google</span>
-</a>
+
 
 
 
