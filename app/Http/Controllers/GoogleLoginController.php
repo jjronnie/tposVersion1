@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Models\Role;
 use Illuminate\Validation\ValidationException;
-// use Illuminate\Support\Facades\Mail;
-// use App\Mail\WelcomeEmail;
+use App\Jobs\SendWelcomeEmailJob;
+
 
 class GoogleLoginController extends Controller
 {
@@ -44,7 +44,8 @@ class GoogleLoginController extends Controller
                 Auth::login($user);
             } else {
                 // User does not exist, create new user and business
-                DB::transaction(function () use ($googleUser, &$user) {
+                $business = null;
+                DB::transaction(function () use ($googleUser, &$user, &$business) {
                     // Create business automatically
 
                     $businessName = $googleUser->getName() ? $googleUser->getName() . "'s Business" : 'New Business';
@@ -115,12 +116,14 @@ class GoogleLoginController extends Controller
 
                 });
 
-                // Send the welcome email with instructions
-                // Mail::to($user->email)->send(new WelcomeEmail($user));
-
+               
+ // Dispatch the email job to the queue
+            SendWelcomeEmailJob::dispatch($user, $business);
 
 
                 Auth::login($user);
+
+                
             }
 
             $name = auth()->user()->name;

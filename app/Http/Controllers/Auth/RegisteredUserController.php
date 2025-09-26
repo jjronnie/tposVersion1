@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\SendWelcomeEmailJob;
 
 class RegisteredUserController extends Controller
 {
@@ -92,6 +93,9 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        // Dispatch the email job to the queue
+            SendWelcomeEmailJob::dispatch($user, $business);
 
         return redirect(route('dashboard', absolute: false));
     }
