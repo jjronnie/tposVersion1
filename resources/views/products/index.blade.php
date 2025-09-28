@@ -38,15 +38,15 @@
     @if ($products->isEmpty())
 
 
-    <x-empty-state message="No products found, Please create one." />
+    <x-empty-state message="No products found" />
 
 
     @else
 
     <x-table :headers="[
+            '#', 
             'Name', 
-            'Type', 
-        
+            'Type',         
             'Purchase Price', 
             'Selling Price', 
             'Current Stock', 
@@ -54,11 +54,12 @@
             
         ]" showActions="true">
 
-        @foreach ($products as $product)
+        @foreach ($products as $index => $product)
         {{-- LOW STOCK ALERT: Highlight the row if quantity is at or below the alert level AND it is a product --}}
         <x-table.row
             class="{{ ($product->type === 'product' && $product->quantity <= $product->quantity_alert) ? 'bg-red-50 hover:bg-red-100 transition-colors' : 'hover:bg-gray-50' }}">
 
+              <x-table.cell>  {{ $index + 1 }}</x-table.cell>
             {{-- Name (with Low Stock Icon) --}}
             <x-table.cell class="font-medium text-gray-900">
                 {{ $product->name }}

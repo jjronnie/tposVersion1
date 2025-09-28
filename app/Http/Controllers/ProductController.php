@@ -84,9 +84,10 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit( $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -100,7 +101,7 @@ class ProductController extends Controller
             $product->update($validated);
             // TODO: Handle 'avatar' file update/deletion
 
-            return response()->json($product);
+              return redirect()->route('products.index')->with('success', 'Product Details updated successfully.');
         });
     }
 

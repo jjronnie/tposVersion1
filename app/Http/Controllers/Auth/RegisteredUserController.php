@@ -36,6 +36,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'business_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
 
@@ -46,14 +47,14 @@ class RegisteredUserController extends Controller
             // 1. Create business automatically
 
             $business = Business::create([
-                'name' => $request->name,
-                'short_name' => $request->name,
+                'name' => $request->business_name,
+                'short_name' => null,
                 'currency' => 'USD',
 
             ]);
 
             $user = User::create([
-                'name' => "Admin",
+                'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                   'status' => 'active',

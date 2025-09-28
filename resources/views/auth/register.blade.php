@@ -29,14 +29,29 @@
                 <form method="POST" action="{{ route('register') }}" class="space-y-4">
                     @csrf
 
-                    <!-- Business Name -->
+                        <!-- Business business_name -->
+                    <div class="relative">
+                        <input type="text" id="business_name" name="business_name" value="{{ old('business_name') }}" required
+                            autofocus placeholder="Business Name"
+                            class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
+                        <label for="business_name"
+                            class="absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
+                            Business Name
+                        </label>
+                        @error('business_name')
+                            <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+
+                    <!--  Name -->
                     <div class="relative">
                         <input type="text" id="name" name="name" value="{{ old('name') }}" required
-                            autofocus placeholder="Business Name"
+                            autofocus placeholder="Enter Name"
                             class="peer w-full px-4 pt-6 pb-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
                         <label for="name"
                             class="absolute left-4 top-2 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
-                            Business Name
+                            Your Name
                         </label>
                         @error('name')
                             <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
