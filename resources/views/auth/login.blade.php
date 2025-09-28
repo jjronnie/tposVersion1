@@ -1,11 +1,11 @@
 <x-guest-layout>
-  <div class="flex flex-col min-h-screen w-full md:flex-row">
+  <div class="flex flex-col min-h-screen w-full lg:flex-row">
     <!-- Left: Login Form -->
     <div
-      class="flex flex-col w-full px-6 py-12 justify-center sm:px-10 md:w-1/3"
+      class="flex flex-col w-full px-6 py-12 justify-center sm:px-10 lg:w-1/3"
     >
-      <div class="w-full  mx-auto py-10 px-10 bg-gray-50 border rounded-lg">
-        <div class="flex mb-2 mx-auto items-center justify-center md:hidden">
+      <div class="w-full  mx-auto py-10 px-10 ">
+        <div class="flex mb-2 mx-auto items-center justify-center lg:hidden">
           <img
             src="{{ asset("assets/img/logo.png") }}"
             alt="Tpos Logo"
@@ -134,7 +134,7 @@
 
     <!-- Right: Banner -->
     <div
-      class="hidden flex-col w-full px-10 py-24 text-center relative justify-center items-center md:flex md:w-2/3"
+      class="hidden flex-col w-full px-5 py-24 text-center relative justify-center items-center lg:flex lg:w-2/3"
       style="
         background-image: url('{{ asset("assets/img/banner.webp") }}');
         background-size: cover;
@@ -152,7 +152,7 @@
       />
 
       <p
-        class="z-10 max-w-2xl px-4 text-white text-base leading-relaxed relative md:text-lg"
+        class="z-10 max-w-2xl px-4 text-white text-base leading-relaxed relative lg:text-lg"
       >
         Transform Your Business with T-POS | The complete point-of-sale solution
         designed to streamline your operations, boost sales, and grow your

@@ -9,43 +9,42 @@ form
 <x-form-input label="Email" name="email" type="email" />
 
 
-  <form action="" method="POST" enctype="multipart/form-data" class="space-y-4">
-                    @csrf
-                    @method('PUT')
+<form action="" method="POST" enctype="multipart/form-data" class="space-y-4">
+    @csrf
+    @method('PUT')
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                        <div>
-                            <label class="label">Business Name *</label>
-                            <input type="text" name="name" value="" required class="input" />
-                        </div>
+        <div>
+            <label class="label">Business Name *</label>
+            <input type="text" name="name" value="" required class="input" />
+        </div>
 
-                         <div>
-                            <label class="label">Business Name *</label>
-                            <input type="text" name="name" value="" required class="input" />
-                        </div>
+        <div>
+            <label class="label">Business Name *</label>
+            <input type="text" name="name" value="" required class="input" />
+        </div>
 
-                    </div>
+    </div>
 
-                    <!-- Actions -->
-                    <div class="flex justify-end space-x-3">
+    <!-- Actions -->
+    <div class="flex justify-end space-x-3">
 
-                        <!-- Confirmation Checkbox -->
-                        <x-confirmation-checkbox />
+        <!-- Confirmation Checkbox -->
+        <x-confirmation-checkbox />
 
-                        <button type="submit" class="btn">
-                            Save <i data-lucide="save" class="w-4 h-4 ml-2"></i>
-                        </button>
-                    </div>
+        <button type="submit" class="btn">
+            Save <i data-lucide="save" class="w-4 h-4 ml-2"></i>
+        </button>
+    </div>
 
-                </form>
+</form>
 
 
 confirmation Modal
 
-    <x-confirm-modal :action="route('users.destroy', $user->id)"
-                        warning="Are you sure you want to delete this user? This action cannot be undone."
-                        triggerText="Delete User" />
+<x-confirm-modal :action="route('users.destroy', $user->id)"
+    warning="Are you sure you want to delete this user? This action cannot be undone." triggerText="Delete User" />
 
 <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
     <!-- card -->
@@ -76,7 +75,7 @@ confirmation Modal
 <x-table :headers="['#', ]" showActions="false">
     <x-table.row>
         <x-table.cell>1</x-table.cell>
-       
+
 
         <x-table.cell>
             <x-dropdown-actions>
@@ -90,55 +89,52 @@ confirmation Modal
 
 <x-table :headers="[ ]" showActions="false">
     <x-table.row>
-        <x-table.cell></x-table.cell>     
+        <x-table.cell></x-table.cell>
     </x-table.row>
 </x-table>
 
 //status badge
 
-  <x-status-badge :status="$employee->status" />
+<x-status-badge :status="$employee->status" />
 
 
 
 side form-select
- <x-slide-form button-text="Settings" title="Settings Form">
-            
-        </x-slide-form>
+<x-slide-form button-text="Settings" title="Settings Form">
 
-        <x-slide-form button-text="Settings" title="Settings Form">
-            <form method="POST" action="">
-                @csrf
+</x-slide-form>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 ">
+<x-slide-form button-text="Settings" title="Settings Form">
+    <form method="POST" action="">
+        @csrf
 
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700">Name<span
-                                class="text-red-600">*</span></label>
-                        <input type="text" name="name" required
-                            class="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring focus:ring-green-500">
-                    </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 ">
 
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" name="name"
-                            class="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring focus:ring-green-500">
-                    </div>
+            <div>
+                <label class="label">Business Name <span class="text-red-600"> *</span></label>
+                <input type="text" name="name" value="{{ old('name', $business->name) }}" required class="input" />
+            </div>
 
-                </div>
-                <button type="submit" class="btn">
-                    Save
-                </button>
-            </form>
-        </x-slide-form>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" name="name"
+                    class="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring focus:ring-green-500">
+            </div>
+
+        </div>
+        <div class="pt-4">
+            <button type="submit" class="btn">
+                Save Changes
+            </button>
+        </div>
+    </form>
+</x-slide-form>
 
 
 <!-- Default -->
 <x-confirmation-checkbox />
 
 <!-- Custom text -->
-<x-confirmation-checkbox 
-    id="agree-terms" 
-    name="agree_terms" 
-    label="I agree to the Terms & Conditions" 
-    color="blue" 
-/>
+<x-confirmation-checkbox id="agree-terms" name="agree_terms" label="I agree to the Terms & Conditions" color="blue" />
+
+<x-empty-state message="No products found for this business." />

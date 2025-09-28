@@ -1,10 +1,10 @@
 <x-guest-layout>
    
-    <div class="flex flex-col md:flex-row min-h-screen w-full">
+    <div class="flex flex-col lg:flex-row min-h-screen w-full">
         <!-- Left: Register Form -->
-        <div class="w-full md:w-1/3 flex flex-col justify-center px-6 py-12 sm:px-10">
-            <div class="w-full max-w-md mx-auto px-10">
-                <div class="md:hidden mb-2 mx-auto flex items-center justify-center">
+        <div class="w-full lg:w-1/3 flex flex-col justify-center px-6 py-12 sm:px-10">
+            <div class="w-full max-w-md mx-auto ">
+                <div class="lg:hidden mb-2 mx-auto flex items-center justify-center">
                     <img src="{{ asset('assets/img/logo.png') }}" alt="Tpos Logo" class="w-62 h-62 object-contain" />
                 </div>
                    <div class="text-center">
@@ -112,7 +112,7 @@
         </div>
 
         <!-- Right: Banner -->
-        <div class="hidden md:flex w-full md:w-2/3 relative flex-col justify-center items-center text-center px-10 py-24"
+        <div class="hidden lg:flex w-full lg:w-2/3 relative flex-col justify-center items-center text-center px-10 py-24"
             style="background-image: url('{{ asset('assets/img/banner.webp') }}'); background-size: cover; background-position: center;">
 
             <!-- Overlay -->
@@ -121,7 +121,7 @@
             <!-- Content -->
             <img src="{{ asset('assets/img/tpos1.png') }}" alt=" Logo" class="h-[210px] mb-0 relative z-10" />
 
-            <p class="max-w-2xl text-white text-base md:text-lg leading-relaxed px-4 relative z-10">
+            <p class="max-w-2xl text-white text-base lg:text-lg leading-relaxed px-4 relative z-10">
                 Transform Your Business with T-POS | The complete point-of-sale solution designed to streamline your
                 operations, boost sales, and grow your business.
             </p>

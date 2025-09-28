@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\GoogleLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // routes/web.php
     Route::resource('customers', CustomerController::class);
+
+     Route::resource('products', ProductController::class);
 
 
 

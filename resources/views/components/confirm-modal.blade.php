@@ -1,12 +1,12 @@
 @props([
-    'action',
-    'buttonText' => 'Proceed',
-    'warning' => 'Are you sure you want to proceed?',
-    'triggerText' => '',
-    'triggerIcon' => '',
-    'triggerClass' => 'btn-danger',
-    'method' => 'DELETE',
-    'title' => '',
+'action',
+'buttonText' => 'Proceed',
+'warning' => 'Are you sure you want to proceed?',
+'triggerText' => '',
+'triggerIcon' => '',
+'triggerClass' => 'btn-danger',
+'method' => 'DELETE',
+'title' => '',
 ])
 
 <div x-data="{ showModal: false, acknowledged: false }" class="inline-block">
@@ -14,7 +14,7 @@
     <button @click="showModal = true" type="button" title="{{ $title }}" class="{{ $triggerClass }}">
         {{ $triggerText }}
         @if ($triggerIcon)
-            <i data-lucide="{{ $triggerIcon }}" class="h-4 w-4"></i>
+        <i data-lucide="{{ $triggerIcon }}" class="h-4 w-4"></i>
         @endif
     </button>
 

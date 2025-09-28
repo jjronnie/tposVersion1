@@ -3,7 +3,7 @@
 @layer components {
 
 
-  .customer-details-section {
+  .details-section {
     @apply flex items-start space-x-6 pb-6 border-b border-gray-200;
   }
 
@@ -11,7 +11,7 @@
     @apply w-24 h-24 bg-gray-200 flex-shrink-0;
   }
 
-  .customer-info-grid {
+  .info-grid {
     @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 w-full;
   }
 

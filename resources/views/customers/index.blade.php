@@ -38,8 +38,9 @@
 
   @if ($customers->isEmpty())
 
-  <p class="text-center">No customers added yet. <a href="{{ route('customers.create') }}"
-      class="text-blue-500 hover:underline">Click here to add one.</a></p>
+
+  <x-empty-state message="No customers added yet. " />
+
 
   @else
 

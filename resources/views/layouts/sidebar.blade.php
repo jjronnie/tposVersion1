@@ -35,7 +35,9 @@
             </a>
             <div class="space-y-1">
 
-                <a href="#" class="sidebar-link">
+                <a href="{{ route('products.index') }}" 
+                                class="sidebar-link {{ request()->routeIs('products.*') ? 'sidebar-link-active' : '' }}">
+
                     <i data-lucide="package" class="w-4 h-4 text-white"></i>
                     <span>Products</span>
                 </a>

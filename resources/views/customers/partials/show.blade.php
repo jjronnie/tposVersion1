@@ -1,6 +1,6 @@
 <x-slide-form button-icon="eye" title="{{ $customer->name }}">
-    <div class="customer-card">
-        <div class="customer-details-section">
+    <div class="card">
+        <div class="details-section">
             <div class="profile-image-placeholder">
 
 
@@ -8,7 +8,7 @@
                     alt="{{ $customer->name }}" class="w-full h-full">
 
             </div>
-            <div class="customer-info-grid">
+            <div class="info-grid">
                 <div class="info-item">
                     <span class="info-label">Name :</span>
                     <span class="info-value">{{ $customer->name }}</span>

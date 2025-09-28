@@ -10,4 +10,8 @@
             <span>Sign in with Google</span>
           </a>
 
-          <p class="m-4 text-sm">OR</p>
+          <div class="flex items-center my-6">
+                    <hr class="flex-grow border-gray-300">
+                    <span class="px-3 text-sm font-medium text-gray-500">OR</span>
+                    <hr class="flex-grow border-gray-300">
+                </div>
