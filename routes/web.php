@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
@@ -59,6 +60,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('customers', CustomerController::class);
 
      Route::resource('products', ProductController::class);
+     Route::resource('suppliers', SupplierController::class);
 
 
 

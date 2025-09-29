@@ -14,6 +14,10 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('business_id')->constrained()->onDelete('cascade');
+            $table->foreignId('supplier_id')
+                ->nullable()
+                ->constrained('suppliers')
+                ->onDelete('set null');
 
             $table->string('name');
             $table->text('description')->nullable();
@@ -29,7 +33,7 @@ return new class extends Migration {
 
             $table->string('barcode')->unique()->nullable();
             $table->string('barcode_image_path')->nullable();
-            
+
 
             $table->string('avatar')->nullable();
 
@@ -40,7 +44,7 @@ return new class extends Migration {
 
             $table->index('business_id');
             $table->index('name');
-                        $table->index('created_by');
+            $table->index('created_by');
 
             $table->timestamps();
         });

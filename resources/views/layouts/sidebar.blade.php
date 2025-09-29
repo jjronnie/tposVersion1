@@ -60,7 +60,7 @@
                     <span>Purchases</span>
                 </a>
 
-                <a href="#" class="sidebar-link">
+                <a href="{{ route('suppliers.index') }}" class="sidebar-link {{ request()->routeIs('suppliers.*') ? 'sidebar-link-active' : '' }}">
                     <i data-lucide="building-2" class="w-4 h-4 text-white"></i>
                     <span>Suppliers</span>
                 </a>

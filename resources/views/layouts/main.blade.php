@@ -8,7 +8,10 @@
     <meta name="googlebot" content="noindex, nofollow">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>TPOS: The Next-Gen POS Software</title>
+
+    <title>
+        {{ ucfirst(Str::before(Route::currentRouteName() ?? 'Admin', '.')) }} | TPOS: The Next-Gen POS Software
+    </title>
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
