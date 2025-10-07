@@ -116,7 +116,8 @@
             </div>
             <div x-show="activeTab === 'Units'" class="max-w-3xl mx-auto  rounded-lg shadow p-6 space-y-6">
                 <h1 class="text-2xl font-bold mb-4">Units</h1>
-                <p>Content for the Units tab.</p>
+                @include('business.settings.units.create')
+                @include('business.settings.units.index')
             </div>
             <div x-show="activeTab === 'Custom Fields'" class="max-w-3xl mx-auto  rounded-lg shadow p-6 space-y-6">
                 <h1 class="text-2xl font-bold mb-4">Custom Fields</h1>

@@ -5,7 +5,7 @@
     <button 
         class="w-14 h-14 flex items-center justify-center rounded-full bg-blue-600  shadow-lg hover:bg-blue-700 transition"
         @click="quickAccessOpen = !quickAccessOpen">
-        <i data-lucide="plus" class="w-6 h-6"></i>
+        <i data-lucide="plus" class="w-6 h-6 text-white"></i>
     </button>
 
     <!-- Dropdown Menu -->

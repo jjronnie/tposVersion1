@@ -1,38 +1,123 @@
 <x-app-layout>
-    <x-page-title  />
+    <x-page-title title="Edit Supplier"  />
 
-    <!-- Controls -->
-    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
-        <div class="flex flex-col sm:flex-row gap-4">
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i data-lucide="search" class="w-4 h-4 text-gray-400"></i>
-                </div>
+     <div class="rounded-lg shadow p-6 space-y-6 mt-4 bg-white text-gray-900 transition-colors">
 
-                <input type="text" id="searchInput"
-                    class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-                    placeholder="Search by name...">
+        <form action="{{ route('suppliers.update', $supplier->id) }}" method="POST">
+    @csrf
+    @method('PUT')
 
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-            </div>
+        {{-- Supplier Name (Required) --}}
+        <x-form-input 
+            label="Name" 
+            value="{{ old('name', $supplier->name) }}" 
+            name="name"
+            placeholder="Enter Supplier Name" 
+            required 
+        />
 
+        {{-- Supplier Email --}}
+        <x-form-input 
+            label="Email" 
+            type="email" 
+            value="{{ old('email', $supplier->email) }}" 
+            name="email"
+            placeholder="Enter Supplier Email" 
+        />
+
+        {{-- Supplier Phone --}}
+        <x-form-input 
+            label="Phone Number" 
+            value="{{ old('phone', $supplier->phone) }}" 
+            name="phone"
+            placeholder="Enter Supplier Phone" 
+        />
+
+        {{-- Contact Person --}}
+        <x-form-input 
+            label="Contact Person" 
+            value="{{ old('contact_person', $supplier->contact_person) }}" 
+            name="contact_person"
+            placeholder="Enter Contact Person's Name" 
+        />
+        
+        {{-- Opening Balance --}}
+        <x-form-input 
+            label="Opening Balance" 
+            type="number" 
+            step="0.01"
+            value="{{ old('opening_balance', $supplier->opening_balance) }}" 
+            name="opening_balance"
+            placeholder="0.00" 
+        />
+
+        {{-- Tax ID (TIN Number equivalent) --}}
+        <x-form-input 
+            label="Tax ID" 
+            value="{{ old('tax_id', $supplier->tax_id) }}"
+            name="tax_id" 
+            placeholder="Enter Tax ID" 
+        />
+
+        {{-- Status --}}
+        <div>
+            <label for="status" class="label">Status</label>
+            <select name="status" id="status" class="form-select w-full border rounded-lg p-2">
+                <option value="enabled" {{ old('status', $supplier->status) == 'enabled' ? 'selected' : '' }}>
+                    Enabled
+                </option>
+                <option value="disabled" {{ old('status', $supplier->status) == 'disabled' ? 'selected' : '' }}>
+                    Disabled
+                </option>
+            </select>
+            @error('status')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
         </div>
-        <div class="flex gap-3">
 
-            <a class="btn" href="{{ route('users.create') }}"> <i data-lucide="plus" class="w-4 h-4 "></i></a>
+        {{-- Supplier Address --}}
+        <div class="md:col-span-3">
+            <label for="address" class="label">Address</label>
+            <textarea 
+                name="address" 
+                rows="3" 
+                class="placeholder w-full border rounded-lg p-2"
+                placeholder="Enter address here..."
+            >{{ old('address', $supplier->address) }}</textarea>
+            @error('address')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
+        </div>
 
-            <!-- Export to PDF Button -->
-            <button class="btn">
-                <i data-lucide="file-text" class="w-4 h-4 "></i>
-            </button>
-
-
-            <!-- Export to Excel Button -->
-            <button class="btn">
-                <i data-lucide="sheet" class="w-4 h-4 "></i>
-            </button>
+        {{-- Supplier Notes --}}
+        <div class="md:col-span-3">
+            <label for="notes" class="label">Notes</label>
+            <textarea 
+                name="notes" 
+                rows="3" 
+                class="placeholder w-full border rounded-lg p-2"
+                placeholder="Any internal notes about the supplier..."
+            >{{ old('notes', $supplier->notes) }}</textarea>
+            @error('notes')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
     </div>
+
+    <div class="flex justify-end space-x-3 mt-4">
+        <x-confirmation-checkbox />
+        <button type="submit" class="btn">
+            Update Supplier <i data-lucide="save" class="w-4 h-4 ml-2"></i>
+        </button>
+    </div>
+</form>
+
+
+     </div>
+
+   
 
 </x-app-layout>

@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\GoogleLoginController;
+use App\Http\Controllers\UnitController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -59,8 +61,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // routes/web.php
     Route::resource('customers', CustomerController::class);
 
-     Route::resource('products', ProductController::class);
-     Route::resource('suppliers', SupplierController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('suppliers', SupplierController::class);
+
+    Route::resource('units', UnitController::class);
 
 
 

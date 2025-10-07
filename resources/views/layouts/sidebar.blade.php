@@ -92,6 +92,14 @@
                 </a>
 
 
+                   {{-- Settings --}}
+                <a href="{{ route('business.settings') }}"
+                    class="sidebar-link {{ request()->routeIs('business.settings') ? 'sidebar-link-active' : '' }}">
+                    <i data-lucide="circle-dollar-sign" class="w-4 h-4 text-white"></i>
+                    <span>Subscription</span>
+                </a>
+
+
                 <!-- Sidebar Footer -->
                 <div class="p-4 border-t border-blue-900">
                     <a href="/support.html"

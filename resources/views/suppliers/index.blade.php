@@ -19,7 +19,7 @@
         </div>
         <div class="flex gap-3">
 
-            <a class="btn" href="{{ route('users.create') }}"> <i data-lucide="plus" class="w-4 h-4 "></i></a>
+            <a class="btn" href="{{ route('suppliers.create') }}"> <i data-lucide="plus" class="w-4 h-4 "></i></a>
 
             <!-- Export to PDF Button -->
             <button class="btn">
@@ -51,8 +51,29 @@
             <x-table.cell>{{ $index + 1 }}</x-table.cell>
             <x-table.cell> {{ $supplier->name }} </x-table.cell>
             <x-table.cell> {{ $supplier->email }} </x-table.cell>
-            <x-table.cell> {{ $supplier->status }} </x-table.cell>
+            <x-table.cell>
+                <x-status-badge :status="$supplier->status" />
+
+            </x-table.cell>
             <x-table.cell> {{ $supplier->created_at->format('M d, Y H:i A') }}</x-table.cell>
+           <x-table.cell>
+        <div class="flex space-x-2">
+
+          <a class="btn" href="{{ route('suppliers.show', $supplier) }}" title="View">
+            <i data-lucide="eye" class="w-4 h-4 "></i>
+          </a>
+
+          <a class="btn" href="{{ route('suppliers.edit', $supplier) }}" title="Edit">
+            <i data-lucide="edit" class="w-4 h-4 "></i>
+          </a>
+
+          <x-confirm-modal :action="route('suppliers.destroy', $supplier->id)"
+            warning="Are you sure you want to delete this supplier? This action cannot be undone."
+            triggerIcon="trash" />
+
+        </div>
+
+      </x-table.cell>
         </x-table.row>
 
         @endforeach

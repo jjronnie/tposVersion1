@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Carbon\Carbon;
+
 class Business extends Model
 {
     use HasFactory, SoftDeletes;
@@ -67,11 +69,60 @@ public function onTrial(): bool
 
 public function trialDaysRemaining(): ?int
 {
-    $activeSubscription = $this->subscriptions()->latest()->first();
-    if (!$activeSubscription || !$activeSubscription->trial_ends_at) return null;
+    $trialEndsAt = $this->trialEndsAt();
 
-    return now()->diffInDays($activeSubscription->trial_ends_at, false);
+        if (!$trialEndsAt) {
+            return null; // No trial period defined
+        }
+
+        $now = Carbon::now()->startOfDay();
+        $trialEnd = $trialEndsAt->endOfDay();
+
+        if ($now->greaterThan($trialEnd)) {
+            return 0; // Trial has expired
+        }
+
+        return $now->diffInDays($trialEnd);
 }
+
+
+
+
+
+
+
+
+ /**
+     * Finds the latest subscription trial end date.
+     */
+    public function trialEndsAt(): ?Carbon
+    {
+        $latestTrial = $this->subscriptions()
+            ->whereNotNull('trial_ends_at')
+            ->orderByDesc('trial_ends_at')
+            ->first();
+
+        // Ensure the returned value is a Carbon instance
+        return $latestTrial ? Carbon::parse($latestTrial->trial_ends_at) : null;
+    }
+
+    /**
+     * Calculates the remaining days in the trial period.
+     * Returns null if no trial was ever set. Returns 0 if expired.
+     */
+ 
+
+    /**
+     * Checks if the mandatory business profile fields are complete.
+     */
+    public function isProfileComplete(): bool
+    {
+        return $this->name !== null &&
+               $this->short_name !== null &&
+               $this->currency !== null &&
+               $this->country !== null &&
+               $this->timezone !== null;
+    }
 
 }
 
