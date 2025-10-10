@@ -23,11 +23,11 @@ class EnsureBusinessReady
         $business = $user->business;
         $targetRoute = 'business.settings';
 
-        // 2. EXCLUSION: CRITICAL FIX
+        // 2. EXCLUSION: CRITICAL FIX & SAFEGUARD
         // We must allow the user to access the settings view AND successfully submit the form
         // to update their details, otherwise the profile can never be completed.
         // If your update route is named differently, update the check below.
-        if ($request->routeIs($targetRoute) || $request->routeIs('business.settings.update')) {
+        if ($request->routeIs($targetRoute) || $request->routeIs('business.update')) {
             return $next($request);
         }
 
@@ -35,7 +35,7 @@ class EnsureBusinessReady
         if (!$business->isProfileComplete()) {
             // Note: Use 'warning' or 'status' if 'error' is too aggressive/reserved for validation
             return redirect()->route($targetRoute)->with('error', 
-                'Please complete your mandatory business settings (Name, Short Name, Currency, Country, and Timezone) to start using the system.'
+                'Please complete your mandatory business settings  to start using the system.'
             );
         }
         
