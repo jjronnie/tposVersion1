@@ -5,10 +5,10 @@
 
 <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
 <!-- card -->
- <x-stat-card title="Total Sales" value="5,002,000" icon="shopping-cart" />
-<x-stat-card title="Total Expenses" value="178,000" icon="receipt" />
-<x-stat-card title="Total Products" value="125000" icon="package" />
-<x-stat-card title="Total Customers" value="4,300,009" icon="users" />
+ <x-stat-card title="Total Sales" value=" {{ business_currency() }}" icon="shopping-cart" />
+<x-stat-card title="Total Expenses" value="0" icon="receipt" />
+<x-stat-card title="Total Products" value="{{ $total_products ?? '-'}}" icon="package" />
+<x-stat-card title="Total Customers" value="{{ $total_customers ?? '-' }}" icon="users" />
 </div>
 
 

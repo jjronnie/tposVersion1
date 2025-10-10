@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\SupplierController;
@@ -39,14 +40,19 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/business/settings', [BusinessController::class, 'index'])->name('business.settings');
     Route::put('/businesses/{business}', [BusinessController::class, 'update'])->name('business.update');
+
+
+    
 
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');

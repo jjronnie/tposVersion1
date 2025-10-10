@@ -23,21 +23,34 @@ class EnsureBusinessReady
         $business = $user->business;
         $targetRoute = 'business.settings';
 
-        // 2. EXCLUSION: CRITICAL FIX & SAFEGUARD
-        // We must allow the user to access the settings view AND successfully submit the form
-        // to update their details, otherwise the profile can never be completed.
-        // If your update route is named differently, update the check below.
-        if ($request->routeIs($targetRoute) || $request->routeIs('business.update')) {
+
+          // 2. EXCLUSION: CRITICAL FIX & SAFEGUARD
+        // Define all routes that must be accessible unconditionally to prevent lockouts.
+        $excludedRoutes = [
+            // Business Settings (to allow user to fix profile/subscription)
+            $targetRoute,
+            'business.update',
+            
+            // Standard Laravel Auth/Verification Routes (CRITICAL)
+            'verification.notice',  // Route to the "Please verify email" page
+            'verification.verify',  // Route handling the verification link
+            'verification.send',    // Route to resend verification email
+            'logout',               // Allow user to log out if needed
+            'password.confirm',     // Allow user to confirm password for security features
+        ];
+
+        // Check if the current route is one of the exempted routes
+        if ($request->routeIs($excludedRoutes)) {
             return $next($request);
         }
 
         // --- CHECK 1: Business Profile Completion ---
         if (!$business->isProfileComplete()) {
-            // Note: Use 'warning' or 'status' if 'error' is too aggressive/reserved for validation
             return redirect()->route($targetRoute)->with('error', 
-                'Please complete your mandatory business settings  to start using the system.'
+                'Please complete your mandatory business settings (Name, Short Name, Currency, Country, and Timezone) to start using the system.'
             );
         }
+        
         
         // --- CHECK 2: Subscription Status ---
         
