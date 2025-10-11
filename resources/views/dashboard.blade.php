@@ -9,6 +9,10 @@
 <x-stat-card title="Total Expenses" value="0" icon="receipt" />
 <x-stat-card title="Total Products" value="{{ $total_products ?? '-'}}" icon="package" />
 <x-stat-card title="Total Customers" value="{{ $total_customers ?? '-' }}" icon="users" />
+<x-stat-card title="Total Customers" value="{{ $total_customers ?? '-' }}" icon="users" />
+<x-stat-card title="Total Customers" value="{{ $total_customers ?? '-' }}" icon="users" />
+<x-stat-card title="Total Customers" value="{{ $total_customers ?? '-' }}" icon="users" />
+<x-stat-card title="Total Customers" value="{{ $total_customers ?? '-' }}" icon="users" />
 </div>
 
 

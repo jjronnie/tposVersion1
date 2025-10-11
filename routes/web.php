@@ -9,6 +9,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\SaleController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +54,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/businesses/{business}', [BusinessController::class, 'update'])->name('business.update');
 
 
-    
+
 
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -71,6 +73,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('suppliers', SupplierController::class);
 
     Route::resource('units', UnitController::class);
+
+
+    Route::get('/sales/search-products', [SaleController::class, 'searchProducts'])->name('sales.search-products');
+    Route::get('/sales/search-customers', [SaleController::class, 'searchCustomers'])->name('sales.search-customers');
+    Route::get('/sales', [SaleController::class, 'index'])->name('sales.index');
+    Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');
+    Route::post('/sales', [SaleController::class, 'store'])->name('sales.store');
+    Route::get('/sales/{sale}', [SaleController::class, 'show'])->name('sales.show');
 
 
 

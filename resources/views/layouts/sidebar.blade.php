@@ -42,7 +42,11 @@
                     <span>Products</span>
                 </a>
 
-                <a href="#" class="sidebar-link">
+            
+
+                 <a href="{{ route('sales.index') }}" 
+                                class="sidebar-link {{ request()->routeIs('sales.*') ? 'sidebar-link-active' : '' }}">
+
                     <i data-lucide="shopping-cart" class="w-4 h-4 text-white"></i>
                     <span>Sales</span>
                 </a>

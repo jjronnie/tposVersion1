@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('account_number')->unique()->nullable();
             $table->string('short_name')->nullable();
             $table->string('currency', 10)->nullable()->default('USD');
+            $table->string('currency_symbol', 10)->nullable()->default('$');
             $table->string('email')->nullable();           
             $table->string('phone')->nullable();
             $table->string('country')->nullable();
