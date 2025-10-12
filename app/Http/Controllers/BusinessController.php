@@ -26,9 +26,9 @@ class BusinessController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function onboarding()
     {
-        //
+        return view('business.setup');
     }
 
     /**

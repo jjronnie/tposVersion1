@@ -12,21 +12,68 @@ class Business extends Model
 {
     use HasFactory, SoftDeletes;
 
+
+
     protected $fillable = [
         'name',
         'account_number',
         'short_name',
         'currency',
+        'currency_symbol',
         'email',
         'phone',
+        'country',
         'address',
         'timezone',
         'tin_no',
-        'website',
-        'logo_path',        
-        'country',
-     
+        'logo_path',
+        'date_format',
+        'source',
+        'source_details',
+        'onboarding_completed',
+        'onboarding_completed_at',
     ];
+
+
+      protected $casts = [
+        'onboarding_completed' => 'boolean',
+        'onboarding_completed_at' => 'datetime',
+    ];
+
+
+     /**
+     * Check if business has completed onboarding
+     */
+    public function hasCompletedOnboarding(): bool
+    {
+        return $this->onboarding_completed === true;
+    }
+
+    /**
+     * Mark onboarding as completed
+     */
+    public function completeOnboarding(): void
+    {
+        $this->update([
+            'onboarding_completed' => true,
+            'onboarding_completed_at' => now(),
+        ]);
+    }
+
+    /**
+     * Get currency symbols
+     */
+    public static function getCurrencySymbols(): array
+    {
+        return [
+            'UGX' => 'UGX',
+            'USD' => '$',
+            'KES' => 'KSh',
+            'TZS' => 'TSh',
+            'EUR' => '€',
+            'GBP' => '£',
+        ];
+    }
 
 
        // One business has many users
@@ -86,10 +133,10 @@ public function trialDaysRemaining(): ?int
 }
 
 
-
-
-
-
+   public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 
 
  /**

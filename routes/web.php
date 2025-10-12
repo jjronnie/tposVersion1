@@ -10,14 +10,12 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\OnboardingController;
 
 
 use Illuminate\Support\Facades\Route;
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 // Route to display the Privacy Policy page
 Route::get('/privacy-policy', function () {
@@ -28,7 +26,6 @@ Route::get('/privacy-policy', function () {
 Route::get('/terms-and-conditions', function () {
     return view('consent.terms');
 })->name('terms');
-
 
 
 // Google login routes
@@ -42,19 +39,26 @@ Route::get('/', function () {
 })->name('home');
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+// Onboarding routes - must be authenticated
+Route::middleware(['auth', 'onboarding'])->group(function () {
+    Route::prefix('onboarding')->name('onboarding.')->group(function () {
+        Route::get('/', [OnboardingController::class, 'index'])->name('index');
+        Route::get('/data', [OnboardingController::class, 'getData'])->name('data');
+        Route::post('/step-one', [OnboardingController::class, 'saveStepOne'])->name('step-one');
+        Route::post('/step-two', [OnboardingController::class, 'saveStepTwo'])->name('step-two');
+        Route::post('/complete', [OnboardingController::class, 'complete'])->name('complete');
+    });
+});
 
-Route::middleware(['auth', 'verified'])->group(function () {
+
+
+
+Route::middleware(['auth', 'verified', 'onboarding'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/business/settings', [BusinessController::class, 'index'])->name('business.settings');
     Route::put('/businesses/{business}', [BusinessController::class, 'update'])->name('business.update');
-
-
-
 
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');

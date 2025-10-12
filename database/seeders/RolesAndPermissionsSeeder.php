@@ -78,9 +78,9 @@ class RolesAndPermissionsSeeder extends Seeder
             [
                 'subscription_plan_id' => 1,
                 'billing_cycle' => 'monthly',
-                'trial_ends_at' => now()->addMonth(),
+                'trial_ends_at' => now()->addYear(),
                 'starts_at' => now(),
-                'ends_at' => now()->addMonth(),
+                'ends_at' => now()->addYear(),
                 'payment_method' => null,
                 'is_active' => true,
                 'auto_renew' => false,

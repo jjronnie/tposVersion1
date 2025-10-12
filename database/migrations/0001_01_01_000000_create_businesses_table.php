@@ -17,14 +17,31 @@ return new class extends Migration {
             $table->string('short_name')->nullable();
             $table->string('currency', 10)->nullable()->default('USD');
             $table->string('currency_symbol', 10)->nullable()->default('$');
-            $table->string('email')->nullable();           
-            $table->string('phone')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('phone')->unique()->nullable();
             $table->string('country')->nullable();
             $table->string('address')->nullable();
             $table->string('timezone')->nullable();
             $table->string('tin_no')->nullable();
-            $table->string('website')->nullable();
             $table->string('logo_path')->nullable();
+            $table->string('date_format')->default('Y-m-d');
+            $table->enum('source', [
+                'facebook',
+                'x',
+                'tiktok',
+                'instagram',
+                'google',
+                'website',
+                'referral',
+                'walk_in',
+                'agent',
+                'other'
+
+            ])->nullable();
+            $table->text('source_details')->nullable();
+
+            $table->boolean('onboarding_completed')->default(false);
+            $table->timestamp('onboarding_completed_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

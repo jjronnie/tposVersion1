@@ -57,6 +57,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Business::class);
     }
 
+    /**
+     * Check if user's business has completed onboarding
+     */
+    public function hasCompletedOnboarding(): bool
+    {
+        return $this->business && $this->business->hasCompletedOnboarding();
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

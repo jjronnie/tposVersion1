@@ -5,6 +5,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Middleware\EnsureBusinessReady;
+use App\Http\Middleware\EnsureOnboardingCompleted;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -16,8 +17,13 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->web(append: [
             ProtectAgainstSpam::class,
-             EnsureBusinessReady::class,
+            //  EnsureBusinessReady::class,
         ]);
+
+          $middleware->alias([
+            'onboarding' => EnsureOnboardingCompleted::class,
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

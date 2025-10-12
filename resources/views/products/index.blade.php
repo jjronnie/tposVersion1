@@ -59,7 +59,7 @@
         <x-table.row
             class="{{ ($product->type === 'product' && $product->quantity <= $product->quantity_alert) ? 'bg-red-50 hover:bg-red-100 transition-colors' : 'hover:bg-gray-50' }}">
 
-              <x-table.cell>  {{ $index + 1 }}</x-table.cell>
+            <x-table.cell> {{ $index + 1 }}</x-table.cell>
             {{-- Name (with Low Stock Icon) --}}
             <x-table.cell class="font-medium text-gray-900">
                 {{ $product->name }}
@@ -83,12 +83,12 @@
 
             {{-- Purchase Price --}}
             <x-table.cell>
-              {{ business_currency() }}  {{ number_format($product->purchase_price, 2) }}
+                {{ business_currency() }} {{ number_format($product->purchase_price, 2) }}
             </x-table.cell>
 
             {{-- Selling Price --}}
             <x-table.cell class="font-semibold">
-                {{ business_currency() }}   {{ number_format($product->selling_price, 2) }}
+                {{ business_currency() }} {{ number_format($product->selling_price, 2) }}
             </x-table.cell>
 
 
@@ -112,7 +112,8 @@
                 @elseif ($product->quantity === 0)
                 <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">Out of Stock</span>
                 @elseif ($product->quantity <= $product->quantity_alert)
-                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Low on Stock</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Low on
+                        Stock</span>
                     @else
                     <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">In
                         Stock</span>
@@ -123,14 +124,13 @@
             <x-table.cell class="whitespace-nowrap">
                 <div class="flex items-center space-x-2">
 
-                     @include('products.partials.show')
+                    @include('products.partials.show')
                     {{-- Edit Button --}}
-                    <a href="{{ route('products.edit', $product) }}" title="Edit"
-                        class="btn">
+                    <a href="{{ route('products.edit', $product) }}" title="Edit" class="btn">
                         <i data-lucide="edit" class="w-4 h-4"></i>
                     </a>
 
-            
+
 
 
                     <x-confirm-modal :action="route('products.destroy', $product->id)"
