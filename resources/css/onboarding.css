@@ -1,8 +1,6 @@
 /* Onboarding Styles */
 @layer components {
-    .btn {
-        @apply inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 ml-auto;
-    }
+
 
     .btn:disabled {
         @apply opacity-50 cursor-not-allowed;

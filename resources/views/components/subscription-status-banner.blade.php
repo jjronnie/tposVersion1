@@ -60,7 +60,7 @@
         </div>
 
         <div>
-            <a href="{{ $route }}" class="btn bg-indigo-600 text-white hover:bg-indigo-700">
+            <a href="{{ $route }}" class="btn ">
                 Change Plan
                 <i data-lucide="chevrons-right" class="w-5 h-5 ml-2"></i>
             </a>
