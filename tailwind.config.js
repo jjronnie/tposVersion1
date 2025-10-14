@@ -20,7 +20,7 @@ export default {
 
             colors: {
                 primary: "#001529",
-                brown: "#995108"
+                brown: "#F95C3B"
             },
         },
     },
