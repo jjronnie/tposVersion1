@@ -25,8 +25,8 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
             'onboarding' => EnsureOnboardingCompleted::class,
-            // 'check.subscription' => CheckActiveSubscription::class,
-            // 'check.limits' => CheckSubscriptionLimits::class,
+            'check.subscription' => CheckActiveSubscription::class,
+            'check.limits' => CheckSubscriptionLimits::class,
 
         ]);
 

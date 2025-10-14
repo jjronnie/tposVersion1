@@ -8,9 +8,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Picqer\Barcode\BarcodeGeneratorPNG;
 use Illuminate\Support\Facades\Storage;
+use App\Services\SubscriptionLimitService;
 
 class ProductController extends Controller
 {
+
+    protected $limitService;
+
+    public function __construct(SubscriptionLimitService $limitService)
+    {
+        $this->limitService = $limitService;
+    }
+
+
     /**
      * Display a listing of the resource.
      */
@@ -38,6 +48,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
+         $business = auth()->user()->business;
+        
+        // Double-check limit
+        $limitCheck = $this->limitService->canAddProduct($business);
+        if (!$limitCheck['allowed']) {
+            return redirect()->back()
+                ->with('error', $limitCheck['message']);
+        }
+
+
         $validated = $request->validate($this->validationRules(null));
 
         // Use a transaction for safety (especially with file uploads)

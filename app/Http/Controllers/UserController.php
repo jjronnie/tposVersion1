@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use App\Services\SubscriptionLimitService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    protected $limitService;
+
+    public function __construct(SubscriptionLimitService $limitService)
+    {
+        $this->limitService = $limitService;
+    }
     
     /**
      * Display a listing of the resource.
@@ -36,8 +43,10 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $permissions = Permission::all();
+          $business = auth()->user()->business;
+        $userLimit = $this->limitService->canAddUser($business);
 
-        return view('users.create', compact('roles', 'permissions'));
+        return view('users.create', compact('roles', 'permissions', 'userLimit'));
     }
 
     /**
@@ -45,6 +54,16 @@ class UserController extends Controller
      */
    public function store(Request $request)
     {
+
+         $business = auth()->user()->business;
+        
+        // Double-check limit (middleware already checked, but good practice)
+        $limitCheck = $this->limitService->canAddUser($business);
+        if (!$limitCheck['allowed']) {
+            return redirect()->back()
+                ->with('error', $limitCheck['message']);
+        }
+        
         // 1. Validate the incoming request
         $validated = $request->validate([
             'name' => 'required|string|max:255',

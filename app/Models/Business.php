@@ -82,6 +82,12 @@ class Business extends Model
         return $this->hasMany(User::class);
     }
 
+    public function products()
+{
+    return $this->hasMany(Product::class, 'business_id');
+}
+
+
        public function customers()
     {
         return $this->hasMany(Customer::class);
