@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\SubscriptionPlanController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
@@ -98,6 +99,8 @@ Route::middleware(['auth', 'verified', 'onboarding'])->group(function () {
 
 
 
+//Overall system admin
+    Route::resource('subscriptionPlans', SubscriptionPlanController::class);
 
 
 

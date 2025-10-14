@@ -39,6 +39,11 @@ class SubscriptionPlan extends Model
         return $this->subscriptions()->where('is_active', true);
     }
 
+     public function getActiveSubscribersCount(): int
+    {
+        return $this->activeSubscriptions()->count();
+    }
+
      /**
      * Get all businesses subscribed to this plan.
      */

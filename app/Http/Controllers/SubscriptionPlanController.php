@@ -12,7 +12,8 @@ class SubscriptionPlanController extends Controller
      */
     public function index()
     {
-        //
+        $plans = SubscriptionPlan::withCount(['activeSubscriptions'])->get();
+        return view('superadmin.subscription.index', compact('plans'));
     }
 
     /**
@@ -20,7 +21,8 @@ class SubscriptionPlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('superadmin.subscription.create');
+        
     }
 
     /**

@@ -105,6 +105,15 @@
                 </a>
 
 
+                
+                {{-- Subscription --}}
+                <a href="{{ route('subscriptionPlans.index') }}"
+                    class="sidebar-link {{ request()->routeIs('billing.index') ? 'sidebar-link-active' : '' }}">
+                    <i data-lucide="tickets-plane" class="w-4 h-4 text-white"></i>
+                    <span>Subscription Plans</span>
+                </a>
+
+
                 <!-- Sidebar Footer -->
                 <div class="p-4 border-t border-blue-900">
                     <a href="/support.html"
