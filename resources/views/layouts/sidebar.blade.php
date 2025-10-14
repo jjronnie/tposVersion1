@@ -35,24 +35,24 @@
             </a>
             <div class="space-y-1">
 
-                <a href="{{ route('products.index') }}" 
-                                class="sidebar-link {{ request()->routeIs('products.*') ? 'sidebar-link-active' : '' }}">
+                <a href="{{ route('products.index') }}"
+                    class="sidebar-link {{ request()->routeIs('products.*') ? 'sidebar-link-active' : '' }}">
 
                     <i data-lucide="package" class="w-4 h-4 text-white"></i>
                     <span>Products</span>
                 </a>
 
-            
 
-                 <a href="{{ route('sales.index') }}" 
-                                class="sidebar-link {{ request()->routeIs('sales.*') ? 'sidebar-link-active' : '' }}">
+
+                <a href="{{ route('sales.index') }}"
+                    class="sidebar-link {{ request()->routeIs('sales.*') ? 'sidebar-link-active' : '' }}">
 
                     <i data-lucide="shopping-cart" class="w-4 h-4 text-white"></i>
                     <span>Sales</span>
                 </a>
 
-              
-                    {{-- Customers --}}
+
+                {{-- Customers --}}
                 <a href="{{ route('customers.index') }}"
                     class="sidebar-link {{ request()->routeIs('customers.*') ? 'sidebar-link-active' : '' }}">
                     <i data-lucide="users" class="w-4 h-4 text-white"></i>
@@ -64,7 +64,8 @@
                     <span>Purchases</span>
                 </a>
 
-                <a href="{{ route('suppliers.index') }}" class="sidebar-link {{ request()->routeIs('suppliers.*') ? 'sidebar-link-active' : '' }}">
+                <a href="{{ route('suppliers.index') }}"
+                    class="sidebar-link {{ request()->routeIs('suppliers.*') ? 'sidebar-link-active' : '' }}">
                     <i data-lucide="building-2" class="w-4 h-4 text-white"></i>
                     <span>Suppliers</span>
                 </a>
@@ -96,9 +97,9 @@
                 </a>
 
 
-                   {{-- Settings --}}
-                <a href="{{ route('business.settings') }}"
-                    class="sidebar-link {{ request()->routeIs('business.settings') ? 'sidebar-link-active' : '' }}">
+                {{-- Subscription --}}
+                <a href="{{ route('billing.index') }}"
+                    class="sidebar-link {{ request()->routeIs('billing.index') ? 'sidebar-link-active' : '' }}">
                     <i data-lucide="circle-dollar-sign" class="w-4 h-4 text-white"></i>
                     <span>Subscription</span>
                 </a>
@@ -112,61 +113,6 @@
                         <span class="text-sm font-medium">Raise a Ticket</span>
                     </a>
                 </div>
-
-                <div class="w-full mx-auto p-4 bg-green-600 rounded-xl shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl">
-{{-- Blade variables for dynamic content and styling --}}
-@php
-// Fallback to "Basic Tier" if activeSubscription is not provided
-$activeSubscription = $activeSubscription ?? 'Basic Tier';
-$displayactiveSubscription = $activeSubscription;
-
-    // Determine which SVG icon to use based on the plan name
-    $isPro = str_contains(strtolower($activeSubscription), 'pro');
-
-    // SVG code for the icon
-    if ($isPro) {
-        // Zap icon for Pro plans
-        $iconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
-    } else {
-        // Package icon for standard plans
-        $iconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 16-7-10-7 10"/><path d="M12 16v6"/></svg>';
-    }
-@endphp
-
-<div class="flex items-center space-x-4">
-    
-    {{-- Plan Icon Container (Deep Blue Accent using bg-blue-700) --}}
-    <div class="flex-shrink-0 p-3 rounded-full bg-blue-700/10 text-white transition-transform duration-300">
-        <span class="w-6 h-6 inline-block" aria-hidden="true">
-            {!! $iconSvg !!}
-        </span>
-    </div>
-
-    {{-- Plan Details --}}
-    <div class="flex flex-col truncate">
-        <p class="text-xs font-semibold uppercase tracking-wider text-white">
-            Your Current Plan
-        </p>
-        <h2 class="text-xl font-extrabold text-white leading-tight truncate">
-            {{ $displayactiveSubscription }}
-        </h2>
-    </div>
-
-</div>
-
-{{-- Call to Action --}}
-<div class="mt-4 pt-3 border-t border-gray-100">
-    {{-- In a real Laravel app, this link would go to your billing route --}}
-    <a 
-      href="" 
-      class="text-xs font-medium text-blue-600 hover:text-blue-800 transition-colors duration-200"
-      aria-label="Manage your subscription plan"
-    >
-      Manage Subscription →
-    </a>
-</div>
-
-</div>
 
             </div>
     </div>

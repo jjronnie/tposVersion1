@@ -63,7 +63,8 @@ class BusinessController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'short_name' => 'nullable|string|max:255',
-            'currency' => 'required|string|max:10',
+            'currency' => 'required|string|max:100',
+            'currency_symbol' => 'required|string|max:100',
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:50',
             'country' => 'nullable|string|max:100',
@@ -105,6 +106,7 @@ class BusinessController extends Controller
             'name',
             'short_name',
             'currency',
+            'currency_symbol',
             'email',
             'phone',
             'country',

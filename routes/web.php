@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
@@ -59,6 +60,11 @@ Route::middleware(['auth', 'verified', 'onboarding'])->group(function () {
 
     Route::get('/business/settings', [BusinessController::class, 'index'])->name('business.settings');
     Route::put('/businesses/{business}', [BusinessController::class, 'update'])->name('business.update');
+
+    Route::get('/billing', [SubscriptionController::class, 'index'])->name('billing.index');
+    Route::post('/subscriptions/{plan}/upgrade', [SubscriptionController::class, 'upgrade'])->name('subscriptions.upgrade');
+    Route::patch('/subscriptions/{subscription}/cancel', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
+
 
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');

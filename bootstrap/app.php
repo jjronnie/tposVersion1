@@ -6,7 +6,8 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Middleware\EnsureBusinessReady;
 use App\Http\Middleware\EnsureOnboardingCompleted;
-
+use App\Http\Middleware\CheckSubscriptionLimits;
+use App\Http\Middleware\CheckActiveSubscription;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
@@ -17,11 +18,16 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->web(append: [
             ProtectAgainstSpam::class,
-            //  EnsureBusinessReady::class,
+                //  EnsureBusinessReady::class,
+            // CheckActiveSubscription::class,
+            // CheckSubscriptionLimits::class,
         ]);
 
-          $middleware->alias([
+        $middleware->alias([
             'onboarding' => EnsureOnboardingCompleted::class,
+            // 'check.subscription' => CheckActiveSubscription::class,
+            // 'check.limits' => CheckSubscriptionLimits::class,
+
         ]);
 
     })

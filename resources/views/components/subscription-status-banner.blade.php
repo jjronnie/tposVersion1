@@ -19,7 +19,7 @@
     $isSubscriptionNeeded = (!$isTrialActive && !$hasActiveSubscription);
     $isProfileIncomplete = !$isProfileComplete;
 
-    $route = route('business.settings');
+    $route = route('billing.index');
 @endphp
 
 {{-- 1. PROFILE INCOMPLETE: This takes priority and forces the user to the settings page. --}}

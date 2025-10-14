@@ -94,23 +94,32 @@ class Business extends Model
         return $this->hasMany(Subscription::class);
     }
 
-    // Optional: get active subscription easily
+    /**
+     * Get the current subscription plan through active subscription.
+     */
+    public function currentPlan()
+    {
+        return $this->activeSubscription?->subscriptionPlan;
+    }
+
+    //  get active subscription easily
     public function activeSubscription()
     {
-        return $this->hasOne(Subscription::class)->where('is_active', true);
+         return $this->hasOne(Subscription::class)
+            ->where('is_active', true)
+            ->latestOfMany();
     }
 
     // Business.php
 public function onTrial(): bool
 {
-    $activeSubscription = $this->subscriptions()
-        ->latest() // get latest subscription
-        ->first();
-
-    if (!$activeSubscription) return false;
-
-    return $activeSubscription->trial_ends_at
-        && now()->lessThanOrEqualTo($activeSubscription->trial_ends_at);
+    $subscription = $this->activeSubscription;
+        
+        if (!$subscription || !$subscription->trial_ends_at) {
+            return false;
+        }
+        
+        return now()->lessThan($subscription->trial_ends_at);
 }
 
 
