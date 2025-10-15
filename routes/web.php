@@ -100,7 +100,7 @@ Route::middleware(['auth', 'verified', 'onboarding'])->group(function () {
 
 
 //Overall system admin
-    Route::resource('subscriptionPlans', SubscriptionPlanController::class);
+    Route::resource('sysadmin/subscriptionPlans', SubscriptionPlanController::class);
 
 
 
