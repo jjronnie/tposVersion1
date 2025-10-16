@@ -21,7 +21,7 @@
     </div>
     <div class="flex gap-3">
 
-      <a class="btn" href="{{ route('subscriptionPlans.create') }}"> <i data-lucide="plus" class="w-4 h-4 "></i></a>
+      <a class="btn" href="{{ route('superadmin.subscription-plans.create') }}"> <i data-lucide="plus" class="w-4 h-4 "></i></a>
 
       <!-- Export to PDF Button -->
       <button class="btn">

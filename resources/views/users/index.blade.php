@@ -67,53 +67,58 @@
             <x-table.cell>
 
                 <div class="flex space-x-2">
-                <x-slide-form button-icon="eye" title="{{ $user->name }}">
-                    <div class="space-y-4 p-4">
-                        <h3 class="font-bold text-lg">User Details</h3>
-                        <p><strong>Name:</strong> {{ $user->name }}</p>
-                        <p><strong>Email:</strong> {{ $user->email }}</p>
-                        <p><strong>Phone:</strong> {{ $user->phone ?? 'N/A' }}</p>
-                        <p><strong>Status:</strong> {{ ucfirst($user->status) }}</p>
-                        <p><strong>Role:</strong> {{ $user->roles->pluck('name')->implode(', ') }}</p>
-                        <p><strong>Permissions:</strong> {{ $user->permissions->pluck('name')->implode(', ') }}</p>
+                    <x-slide-form button-icon="eye" title="{{ $user->name }}">
+                        <div class="space-y-4 p-4">
+                            <h3 class="font-bold text-lg">User Details</h3>
+                            <p><strong>Name:</strong> {{ $user->name }}</p>
+                            <p><strong>Email:</strong> {{ $user->email }}</p>
+                            <p><strong>Phone:</strong> {{ $user->phone ?? 'N/A' }}</p>
+                            <p><strong>Status:</strong> {{ ucfirst($user->status) }}</p>
+                            <p><strong>Role:</strong> {{ $user->roles->pluck('name')->implode(', ') }}</p>
+                            <p><strong>Permissions:</strong> {{ $user->permissions->pluck('name')->implode(', ') }}</p>
 
-                        @if ($user->profile_photo_path)
-                        <div class="mt-4">
-                            <p><strong>Profile Photo:</strong></p>
-                            <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Profile Photo"
-                                class="w-24 h-24 object-cover rounded-full mt-2">
+                            @if ($user->profile_photo_path)
+                            <div class="mt-4">
+                                <p><strong>Profile Photo:</strong></p>
+                                <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Profile Photo"
+                                    class="w-24 h-24 object-cover rounded-full mt-2">
+                            </div>
+                            @endif
+
+                            <h3 class="font-bold text-lg mt-6">Active Sessions</h3>
+                            @if (is_array($user->allSessions))
+                            @foreach ($user->allSessions as $session)
+                            <div class="border p-2 rounded">
+                                <p><strong>Device:</strong> {{ $session['agent']['platform'] ?? 'Unknown' }} - {{
+                                    $session['agent']['browser'] ?? 'Unknown' }}</p>
+                                <p><strong>IP Address:</strong> {{ $session['ip_address'] }}</p>
+                                <p><strong>Last Active:</strong> {{
+                                    Carbon\Carbon::createFromTimestamp($session['last_active'])->diffForHumans() }}</p>
+                            </div>
+                            @endforeach
+                            @else
+                            <p>No active sessions found.</p>
+                            @endif
+
+                            <div class="flex justify-end mt-6">
+                                <a href="{{ route('users.edit', $user) }}" class="btn ">
+                                    Edit User
+                                </a>
+                            </div>
                         </div>
-                        @endif
+                    </x-slide-form>
 
-                        <h3 class="font-bold text-lg mt-6">Active Sessions</h3>
-                        @if (is_array($user->allSessions))
-                        @foreach ($user->allSessions as $session)
-                        <div class="border p-2 rounded">
-                            <p><strong>Device:</strong> {{ $session['agent']['platform'] ?? 'Unknown' }} - {{
-                                $session['agent']['browser'] ?? 'Unknown' }}</p>
-                            <p><strong>IP Address:</strong> {{ $session['ip_address'] }}</p>
-                            <p><strong>Last Active:</strong> {{
-                                Carbon\Carbon::createFromTimestamp($session['last_active'])->diffForHumans() }}</p>
-                        </div>
-                        @endforeach
-                        @else
-                        <p>No active sessions found.</p>
-                        @endif
+                    @can('manage-users')
+                        
+                 
 
-                        <div class="flex justify-end mt-6">
-                            <a href="{{ route('users.edit', $user) }}" class="btn ">
-                                Edit User
-                            </a>
-                        </div>
-                    </div>
-                </x-slide-form>
-
-                <a href="{{ route('users.edit', $user) }}" class="btn ">
-                    <i data-lucide="edit" class="w-4 h-4 "></i>
-                </a>
+                    <a href="{{ route('users.edit', $user) }}" class="btn ">
+                        <i data-lucide="edit" class="w-4 h-4 "></i>
+                    </a>
                     <x-confirm-modal :action="route('users.destroy', $user->id)"
                         warning="Are you sure you want to delete this user? This action cannot be undone."
-                           triggerIcon="trash" />
+                        triggerIcon="trash" />
+                           @endcan
                 </div>
             </x-table.cell>
         </x-table.row>

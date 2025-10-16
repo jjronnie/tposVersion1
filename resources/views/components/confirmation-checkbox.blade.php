@@ -1,4 +1,4 @@
-<div class="flex items-center">
+{{-- <div class="flex items-center">
     <input 
         id="{{ $id }}" 
         name="{{ $name }}" 
@@ -9,4 +9,4 @@
     <label for="{{ $id }}" class="ml-2 block text-sm text-gray-700">
         {{ $label }}
     </label>
-</div>
+</div> --}}

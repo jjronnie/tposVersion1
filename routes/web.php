@@ -1,21 +1,26 @@
 <?php
+use Illuminate\Support\Facades\Route;
+
+
+
+//superadmin Controllers
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\SubscriptionPlanController;
+use App\Http\Controllers\Admin\SuperAdminController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\SubscriptionPlanController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\OnboardingController;
-
-
-use Illuminate\Support\Facades\Route;
 
 
 
@@ -30,9 +35,6 @@ Route::get('/terms-and-conditions', function () {
 })->name('terms');
 
 
-// Google login routes
-Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
 
 
@@ -94,13 +96,31 @@ Route::middleware(['auth', 'verified', 'onboarding'])->group(function () {
     Route::get('/sales/{sale}', [SaleController::class, 'show'])->name('sales.show');
 
 
+// Route group for SuperAdmin users only
+Route::group([
+    'prefix' => 'sysadmin',
+    'as' => 'superadmin.',
+    'middleware' => ['auth', 'role:superadmin'],
+], function () {
+
+    // Dashboard
+    Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('dashboard');
+
+    // Resource routes
+    Route::resource('subscription-plans', SubscriptionPlanController::class);
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('users', AdminUserController::class);
+
+});
+
+
 
 
 
 
 
 //Overall system admin
-    Route::resource('sysadmin/subscriptionPlans', SubscriptionPlanController::class);
+    
 
 
 

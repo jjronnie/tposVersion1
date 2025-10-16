@@ -43,11 +43,10 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     
-    public function creator()
-    {
-        return $this->belongsTo(User::class, 'created_by')->withTrashed();
-    }
-
+  public function creator()
+{
+    return $this->belongsTo(User::class, 'created_by');
+}
 
 
 
@@ -56,6 +55,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Business::class);
     }
+
+
+
+
 
     /**
      * Check if user's business has completed onboarding

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\DashboardService;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -17,6 +18,10 @@ class DashboardController extends Controller
 
  public function index()
     {
+
+        $user = Auth::user();
+
+
         // Fetching the core statistics (Total Products, Total Customers)
         $coreStats = $this->dashboardService->getCoreStats();
         
@@ -31,6 +36,11 @@ class DashboardController extends Controller
         //     'topCustomers' => $topCustomers,
         //     'stockAlerts' => $stockAlerts,
         // ]);
+
+        if ($user->hasRole('superadmin')) {
+            // Redirect Admins to the admin dashboard route
+            return redirect()->route('superadmin.dashboard');
+        }
 
         return view('dashboard', $coreStats);
     }

@@ -11,7 +11,7 @@
 
 
     <title>
-        {{ ucfirst(Str::before(Route::currentRouteName() ?? 'Admin', '.')) }} | TPOS: The Next-Gen POS Software
+        {{ ucfirst(Str::before(Route::currentRouteName() ?? 'Admin', '.')) }} | Novas
     </title>
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 

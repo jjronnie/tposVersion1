@@ -61,7 +61,7 @@ class RegisteredUserController extends Controller
                 'business_id' => $business->id,
             ]);
 
-             $user->assignRole('superadmin');
+             $user->assignRole('admin');
 
 
 

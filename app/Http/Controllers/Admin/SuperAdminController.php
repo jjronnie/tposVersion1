@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\SubscriptionPlan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class SubscriptionPlanController extends Controller
+class SuperAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $plans = SubscriptionPlan::withCount(['activeSubscriptions'])->get();
-        return view('superadmin.subscription.index', compact('plans'));
+        return view("superadmin.dashboard");
     }
 
     /**
@@ -21,8 +20,7 @@ class SubscriptionPlanController extends Controller
      */
     public function create()
     {
-        return view('superadmin.subscription.create');
-        
+        //
     }
 
     /**
@@ -36,7 +34,7 @@ class SubscriptionPlanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SubscriptionPlan $subscriptionPlan)
+    public function show(string $id)
     {
         //
     }
@@ -44,7 +42,7 @@ class SubscriptionPlanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SubscriptionPlan $subscriptionPlan)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +50,7 @@ class SubscriptionPlanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SubscriptionPlan $subscriptionPlan)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +58,7 @@ class SubscriptionPlanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SubscriptionPlan $subscriptionPlan)
+    public function destroy(string $id)
     {
         //
     }

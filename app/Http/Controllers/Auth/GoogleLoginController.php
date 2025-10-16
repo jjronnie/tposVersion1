@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Business;
 use App\Models\Customer;
@@ -80,14 +81,14 @@ class GoogleLoginController extends Controller
                         $user->forceFill(['email_verified_at' => now()])->save();
                     }
 
-                    // Assign 'superadmin' role
-                    $superadminRole = Role::where('name', 'superadmin')->first();
-                    if ($superadminRole) {
-                        $user->assignRole($superadminRole);
+                    // Assign 'admin' role
+                    $adminRole = Role::where('name', 'admin')->first();
+                    if ($adminRole) {
+                        $user->assignRole($adminRole);
                     } else {
-                        // Handle case where superadmin role doesn't exist
+                        // Handle case where admin role doesn't exist
                         // Log an error or create the role if necessary
-                        \Log::error('Superadmin role not found. Please create it.');
+                        \Log::error('An Error occured, please try again or contact Admin.');
                     }
 
                     // Create 1-month free trial subscription

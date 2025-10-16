@@ -76,7 +76,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $business->subscriptions()->updateOrCreate(
             ['business_id' => $business->id],
             [
-                'subscription_plan_id' => 1,
+                'subscription_plan_id' => 3,
                 'billing_cycle' => 'monthly',
                 'trial_ends_at' => now()->addYear(),
                 'starts_at' => now(),
