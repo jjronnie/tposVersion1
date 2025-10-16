@@ -29,8 +29,8 @@
 
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('favicon.webp') }}">
-    <link rel="apple-touch-icon" href="{{ asset('favicon.webp') }}">
+    <link rel="icon" href="{{ asset('favv1.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('favv1.png') }}">
 
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#001529">

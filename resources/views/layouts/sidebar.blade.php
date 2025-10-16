@@ -7,7 +7,7 @@
             <div class="w-full h-12  rounded-lg flex items-center justify-center text-white font-bold text-lg">
                 <span>
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset('assets/img/tpos1.png') }}" alt="LOGO">
+                        <img src="{{ asset('novas4.png') }}" alt="LOGO">
                     </a>
                 </span>
             </div>
