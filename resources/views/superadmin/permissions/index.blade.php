@@ -52,7 +52,7 @@
 
                     <x-slide-form button-icon="edit" title="Settings Form">
 
-                        <form action="{{ route('permissions.update', $permission->id) }}" method="POST">
+                        <form action="{{ route('superadmin.permissions.update', $permission->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -84,7 +84,7 @@
                     </x-slide-form>
 
 
-                    <x-confirm-modal :action="route('permissions.destroy', $permission->id)"
+                    <x-confirm-modal :action="route('superadmin.permissions.destroy', $permission->id)"
                         warning="Are you sure you want to delete this permission? This action cannot be undone."
                         triggerIcon="trash" />
 

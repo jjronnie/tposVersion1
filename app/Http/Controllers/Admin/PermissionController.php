@@ -41,7 +41,7 @@ class PermissionController extends Controller
 
         Permission::create(['name' => $request->name]);
 
-        return redirect()->route('permissions.index')->with('success', 'Permission created.');
+        return redirect()->route('superadmin.permissions.index')->with('success', 'Permission created.');
     }
 
     /**
@@ -71,7 +71,7 @@ public function update(Request $request, Permission $permission)
 
         $permission->update(['name' => $request->name]);
 
-        return redirect()->route('permissions.index')->with('success', 'Permission updated.');
+        return redirect()->route('superadmin.permissions.index')->with('success', 'Permission updated.');
     }
 
     /**
@@ -80,6 +80,6 @@ public function update(Request $request, Permission $permission)
     public function destroy(Permission $permission)
     {
         $permission->delete();
-        return redirect()->route('permissions.index')->with('success', 'Permission deleted.');
+        return redirect()->route('superadmin.permissions.index')->with('success', 'Permission deleted.');
     }
 }

@@ -1,4 +1,4 @@
-<form action="{{ route('permissions.update', $permission->id) }}" method="POST">
+<form action="{{ route('superadmin.permissions.update', $permission->id) }}" method="POST">
     @csrf
     @method('PUT')
 

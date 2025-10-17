@@ -3,7 +3,7 @@
 
 
 
-    <form action="{{ route('permissions.store') }}" method="POST">
+    <form action="{{ route('superadmin.permissions.store') }}" method="POST">
         @csrf
 
 
