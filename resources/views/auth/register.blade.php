@@ -5,13 +5,13 @@
         <div class="w-full lg:w-1/3 flex flex-col justify-center px-6 py-12 sm:px-10">
             <div class="w-full max-w-md mx-auto ">
                 <div class="lg:hidden mb-2 mx-auto flex items-center justify-center">
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="Tpos Logo" class="w-62 h-62 object-contain" />
+                    <x-logo />
                 </div>
                    <div class="text-center">
 
                 <h1 class="font-bold mb-3  text-xl">Create Account</h1>
 
-                 @include('auth.google-button')
+               
 
                 <p class="mb-6  text-sm">
                     Enter your credentials to create a free account and get a <span class="text-green-500 font-bold"> 30 days free trial. </span> No Credit card Required
@@ -105,7 +105,7 @@
                         <label for="terms-and-conditions" class="text-sm text-gray-900">
                             I agree to the
                             <a href="/terms-and-conditions" class="text-green-600 hover:underline">
-                                Terms and Conditions of Tpos
+                                Terms and Conditions of Novas
                             </a>
                         </label>
                     </div>
@@ -116,6 +116,8 @@
                         Create Account
                     </button>
                 </form>
+
+                  @include('auth.google-button')
 
             </div>
             <p class="text-sm mt-4 text-center">
@@ -134,10 +136,10 @@
             <div class="absolute inset-0 bg-black opacity-50"></div>
 
             <!-- Content -->
-            <img src="{{ asset('assets/img/tpos1.png') }}" alt=" Logo" class="h-[210px] mb-0 relative z-10" />
+            <x-logo  class="z-10 h-[210px] mb-0 relative" />
 
             <p class="max-w-2xl text-white text-base lg:text-lg leading-relaxed px-4 relative z-10">
-                Transform Your Business with T-POS | The complete point-of-sale solution designed to streamline your
+                Transform Your Business with Novas | The complete point-of-sale solution designed to streamline your
                 operations, boost sales, and grow your business.
             </p>
         </div>

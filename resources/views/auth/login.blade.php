@@ -6,18 +6,12 @@
     >
       <div class="w-full  mx-auto py-10 px-10 ">
         <div class="flex mb-2 mx-auto items-center justify-center lg:hidden">
-          <img
-            src="{{ asset("assets/img/logo.png") }}"
-            alt="Tpos Logo"
-            class="object-contain w-62 h-62"
-          />
+           <x-logo />
         </div>
         <div class="text-center">
           <h1 class="mb-3 font-bold text-xl">Sign In to your account</h1>
 
-          <!-- Google Sign In Button -->
-
-          @include('auth.google-button')
+        
        
           <p class="mb-6 text-sm">Enter your credentials</p>
         </div>
@@ -123,6 +117,10 @@
           </button>
         </form>
 
+          <!-- Google Sign In Button -->
+
+          @include('auth.google-button')
+
         <p class="mt-4 text-sm text-center">
           Dont have an Account?
           <span class="text-green-600 underline">
@@ -145,16 +143,17 @@
       <div class="bg-black opacity-70 absolute inset-0"></div>
 
       <!-- Content -->
-      <img
-        src="{{ asset("assets/img/tpos1.png") }}"
-        alt=" Logo"
-        class="z-10 h-[210px] mb-0 relative"
-      />
+    
+
+  
+
+<x-logo  class="z-10 h-[210px] mb-0 relative" /> 
+
 
       <p
         class="z-10 max-w-2xl px-4 text-white text-base leading-relaxed relative lg:text-lg"
       >
-        Transform Your Business with T-POS | The complete point-of-sale solution
+        Transform Your Business with Novas | The complete point-of-sale solution
         designed to streamline your operations, boost sales, and grow your
         business.
       </p>

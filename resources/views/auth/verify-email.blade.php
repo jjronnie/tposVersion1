@@ -5,7 +5,7 @@
             <div class="w-full max-w-sm mx-auto p-8 bg-white rounded-xl shadow-lg">
 
                 <div class="md:hidden mb-6 flex items-center justify-center">
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="Tpos Logo" class="h-16 w-auto" />
+                     <x-application-logo/>
                 </div>
 
                 <h1 class="font-bold text-2xl text-gray-800 text-center mb-2">Verify Your Email</h1>
@@ -49,7 +49,7 @@
             <div class="absolute inset-0 bg-black/50 opacity-80"></div>
 
             <div class="relative z-10 p-6">
-                <img src="{{ asset('assets/img/tpos1.png') }}" alt="Tpos Logo" class="h-32 mb-6 mx-auto" />
+                  <x-application-logo/>
                 <h2 class="text-4xl font-bold text-white leading-tight mb-4">
                     Transform Your Business with T-POS
                 </h2>

@@ -5,7 +5,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Back Button -->
             <div class="mb-6">
-                <a href="{{ route('users.index') }}" 
+                <a href="{{ route('superadmin.users.index') }}" 
                    class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" 
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -22,19 +22,8 @@
                         <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-24"></div>
                         <div class="px-6 pb-6">
                             <div class="flex flex-col items-center -mt-12">
-                                @if ($user->profile_photo_path)
-                                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" 
-                                         alt="{{ $user->name }}"
-                                         class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover">
-                                @else
-                                    <div class="w-24 h-24 rounded-full border-4 border-white shadow-lg bg-gray-200 flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400" viewBox="0 0 24 24" 
-                                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-                                            <circle cx="12" cy="7" r="4"/>
-                                        </svg>
-                                    </div>
-                                @endif
+                             <x-user-photo :photo="$user->profile_photo_path" :name="$user->name" size="24" />
+
                                 
                                 <h2 class="mt-4 text-xl font-bold text-gray-900">{{ $user->name }}</h2>
                                 <p class="text-sm text-gray-500">{{ $user->email }}</p>
@@ -65,7 +54,7 @@
 
                                 <!-- Edit Button -->
                                 <div class="mt-6 w-full">
-                                    <a href="{{ route('users.edit', $user) }}" 
+                                    <a href="{{ route('superadmin.users.edit', $user) }}" 
                                        class="w-full inline-flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 24 24" 
                                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

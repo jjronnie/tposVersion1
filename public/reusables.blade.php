@@ -3,6 +3,14 @@
 <x-page-title />
 
 
+<x-logo /> <!-- default size -->
+
+<x-logo width="120" height="120" /> <!-- custom size -->
+
+<x-logo width="80" height="80" class="rounded-full shadow-lg" /> <!-- with custom class -->
+
+
+
 form
 
 <x-form-input label="Role" name="role" required />

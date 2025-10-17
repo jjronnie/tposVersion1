@@ -24,19 +24,14 @@ use App\Http\Controllers\OnboardingController;
 
 
 
-// Route to display the Privacy Policy page
+// Guest Routes
 Route::get('/privacy-policy', function () {
     return view('consent.policy');
 })->name('policy');
 
-// Route to display the Terms of Service page
 Route::get('/terms-and-conditions', function () {
     return view('consent.terms');
 })->name('terms');
-
-
-
-
 
 Route::get('/', function () {
     return file_get_contents(public_path('landing/index.html'));
@@ -55,20 +50,14 @@ Route::middleware(['auth', 'onboarding'])->group(function () {
 });
 
 
-
-
 Route::middleware(['auth', 'verified', 'onboarding'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
     Route::get('/business/settings', [BusinessController::class, 'index'])->name('business.settings');
     Route::put('/businesses/{business}', [BusinessController::class, 'update'])->name('business.update');
-
     Route::get('/billing', [SubscriptionController::class, 'index'])->name('billing.index');
     Route::post('/subscriptions/{plan}/upgrade', [SubscriptionController::class, 'upgrade'])->name('subscriptions.upgrade');
     Route::patch('/subscriptions/{subscription}/cancel', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
-
-
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
@@ -79,12 +68,9 @@ Route::middleware(['auth', 'verified', 'onboarding'])->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
-    // routes/web.php
     Route::resource('customers', CustomerController::class);
-
     Route::resource('products', ProductController::class);
     Route::resource('suppliers', SupplierController::class);
-
     Route::resource('units', UnitController::class);
 
 
@@ -95,39 +81,24 @@ Route::middleware(['auth', 'verified', 'onboarding'])->group(function () {
     Route::post('/sales', [SaleController::class, 'store'])->name('sales.store');
     Route::get('/sales/{sale}', [SaleController::class, 'show'])->name('sales.show');
 
-
-// Route group for SuperAdmin users only
-Route::group([
-    'prefix' => 'sysadmin',
-    'as' => 'superadmin.',
-    'middleware' => ['auth', 'role:superadmin'],
-], function () {
-
-    // Dashboard
-    Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('dashboard');
-
-    // Resource routes
-    Route::resource('subscription-plans', SubscriptionPlanController::class);
-    Route::resource('permissions', PermissionController::class);
-    Route::resource('users', AdminUserController::class);
-
-});
-
-
-
-
-
-
-
-//Overall system admin
-    
-
-
-
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+    // Route group for SuperAdmin  only
+    Route::group([
+        'prefix' => 'sysadmin',
+        'as' => 'superadmin.',
+        'middleware' => ['auth', 'verified', 'onboarding', 'role:superadmin'],
+    ], function () {
+
+        Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('dashboard');
+        Route::resource('subscription-plans', SubscriptionPlanController::class);
+        Route::resource('permissions', PermissionController::class);
+        Route::resource('users', AdminUserController::class);
+
+    });
 
 require __DIR__ . '/auth.php';
