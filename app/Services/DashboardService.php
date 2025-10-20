@@ -5,7 +5,9 @@ namespace App\Services;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Sale;
+use App\Models\SaleItem; 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class DashboardService
 {
@@ -24,9 +26,16 @@ class DashboardService
             ->where('business_id', $businessId)
             ->count();
 
+            // 💰 Calculate Total Sales by summing the 'grand_total' from the sales table.
+        // We only sum 'paid' or 'partial' sales.
+        $totalSalesAmount = Sale::where('business_id', $businessId)
+            ->whereIn('payment_status', ['paid', 'partial'])
+            ->sum('grand_total');
+
         return [
             'total_products' => $totalProducts,
             'total_customers' => $totalCustomers,
+            'total_sales_amount' => $totalSalesAmount
         ];
     }
 
