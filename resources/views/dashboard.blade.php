@@ -16,9 +16,9 @@
 
     <div class="space-y-6">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="dashboard-widgets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <div class="bg-white rounded-xl p-6 h-full">
+            <div class="dashboard-card bg-white rounded-xl p-6 h-full" data-id="top-products">
                 <div class="flex items-center justify-between border-b pb-3 mb-4">
                     <h3 class="text-lg font-semibold text-gray-800 flex items-center">
                         <i data-lucide="bar-chart-3" class="w-5 h-5 mr-2 text-indigo-500"></i>
@@ -50,7 +50,7 @@
                 @endif
             </div>
 
-            <div class="bg-white  rounded-xl p-6 h-full">
+            <div class="dashboard-card bg-white  rounded-xl p-6 h-full" data-id="top-customers">
                 <div class="flex items-center justify-between border-b pb-3 mb-4">
                     <h3 class="text-lg font-semibold text-gray-800 flex items-center">
                         <i data-lucide="users" class="w-5 h-5 mr-2 text-green-500"></i>
@@ -71,7 +71,7 @@
                 @endif
             </div>
 
-            <div class="bg-white  rounded-xl p-6 hidden lg:block h-full">
+            <div class="dashboard-card bg-white  rounded-xl p-6 hidden lg:block h-full " data-id="revenue">
                 <div class="flex items-center justify-between border-b pb-3 mb-4">
                     <h3 class="text-lg font-semibold text-gray-800 flex items-center">
                         <i data-lucide="line-chart" class="w-5 h-5 mr-2 text-yellow-500"></i>

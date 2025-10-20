@@ -41,6 +41,12 @@ Route::middleware('guest')->group(function () {
     Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
     Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
+
+    // NEW: Route for Google One Tap POST request
+Route::post('auth/google/one-tap', [GoogleLoginController::class, 'handleOneTap'])
+    ->middleware('web') // Ensure session/cookies are available
+    ->name('google.one-tap.handler');
+
 });
 
 Route::middleware('auth')->group(function () {

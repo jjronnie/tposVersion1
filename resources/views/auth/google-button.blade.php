@@ -1,14 +1,27 @@
-<div class="flex items-center my-6">
-  <hr class="flex-grow border-gray-300">
-  <span class="px-3 text-sm font-medium text-gray-500">OR</span>
-  <hr class="flex-grow border-gray-300">
-</div>
+<button id="google-login"
+    class="flex w-full py-3 mt-4 text-gray-700 font-medium bg-white border border-gray-300 rounded-full shadow-sm items-center justify-center gap-3 transition duration-300 select-none">
+    <img src="{{ asset('assets/img/google144.png') }}" alt="Google Logo" class="w-5 h-5" />
+    <span id="google-text">Continue with Google</span>
+    <svg id="google-spinner" class="hidden w-5 h-5 animate-spin text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+    </svg>
+</button>
 
-<a href="{{ route('google.login') }}"
-  class="flex w-full py-3 mt-4 text-gray-700 font-medium bg-white border border-gray-300 rounded-full shadow-sm items-center justify-center gap-3 hover:bg-gray-100 transition duration-300">
-  <img src="{{ asset("assets/img/google144.png") }}" alt="Google Logo" class="w-5 h-5" />
+<script>
+document.getElementById('google-login').addEventListener('click', function () {
+    const btn = this;
+    const text = document.getElementById('google-text');
+    const spinner = document.getElementById('google-spinner');
 
+    // Disable the button
+    btn.disabled = true;
 
+    // Hide text, show spinner
+    text.classList.add('hidden');
+    spinner.classList.remove('hidden');
 
-  <span>Continue with Google</span>
-</a>
+    // Redirect to Google OAuth
+    window.location.href = "{{ route('google.login') }}";
+});
+</script>

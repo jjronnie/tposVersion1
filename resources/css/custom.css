@@ -67,3 +67,8 @@
     display: none !important;
 }
 
+
+.flex.items-center.justify-between {
+    cursor: move;
+}
+
