@@ -1,6 +1,6 @@
 self.addEventListener('install', function (e) {
   e.waitUntil(
-    caches.open('tpos').then(async function (cache) {
+    caches.open('novasv1').then(async function (cache) {
       const files = [
         '/',
         'login',
