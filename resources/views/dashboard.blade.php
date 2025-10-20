@@ -21,27 +21,36 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <div class="bg-white  rounded-xl p-6 h-full">
-            <div class="flex items-center justify-between border-b pb-3 mb-4">
-                <h3 class="text-lg font-semibold text-gray-800 flex items-center">
-                    <i data-lucide="bar-chart-3" class="w-5 h-5 mr-2 text-indigo-500"></i>
-                    Top Selling Products
-                </h3>
-                <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800">View All</a>
-            </div>
-            
-            <ul class="divide-y divide-gray-100">
-                @for ($i = 1; $i <= 5; $i++)
-                    <li class="py-2 flex items-center justify-between text-sm">
-                        <span class="truncate pr-2">Product Name {{ $i }}</span>
-                        <span class="font-semibold text-gray-900">{{ rand(100, 500) }} Units</span>
-                    </li>
-                @endfor
-            </ul>
-            @if (false) 
-                <p class="text-gray-500 mt-4">No sales data available yet.</p>
-            @endif
-        </div>
+   <div class="bg-white rounded-xl p-6 h-full">
+    <div class="flex items-center justify-between border-b pb-3 mb-4">
+        <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+            <i data-lucide="bar-chart-3" class="w-5 h-5 mr-2 text-indigo-500"></i>
+            Top Selling Products
+        </h3>
+        <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800">View All</a>
+    </div>
+    
+    @if(count($topProducts) > 0)
+        <ul class="divide-y divide-gray-100">
+            @foreach ($topProducts as $product)
+                <li class="py-3 flex items-center justify-between">
+                    <div class="flex items-center space-x-3 flex-1 min-w-0">
+                       
+                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="package" class="w-5 h-5 text-indigo-600"></i>
+                            </div>
+                        <span class=" text-sm font-medium text-gray-700">{{ $product['name'] }}</span>
+                    </div>
+                    <span class="font-semibold text-gray-900 text-sm ml-3 flex-shrink-0">
+                      Sold  {{ number_format($product['total_sold']) }}   {{ ucfirst($product['unit']) }} 
+                    </span>
+                </li>
+            @endforeach
+        </ul>
+    @else
+        <x-empty-state message="No products data yet." />
+    @endif
+</div>
 
         <div class="bg-white  rounded-xl p-6 h-full">
             <div class="flex items-center justify-between border-b pb-3 mb-4">

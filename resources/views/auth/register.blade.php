@@ -129,20 +129,8 @@
         </div>
 
         <!-- Right: Banner -->
-        <div class="hidden lg:flex w-full lg:w-2/3 relative flex-col justify-center items-center text-center px-10 py-24"
-            style="background-image: url('{{ asset('assets/img/banner.webp') }}'); background-size: cover; background-position: center;">
-
-            <!-- Overlay -->
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-
-            <!-- Content -->
-            <x-logo  class="z-10 h-[210px] mb-0 relative" />
-
-            <p class="max-w-2xl text-white text-base lg:text-lg leading-relaxed px-4 relative z-10">
-                Transform Your Business with Novas | The complete point-of-sale solution designed to streamline your
-                operations, boost sales, and grow your business.
-            </p>
-        </div>
+         @include('auth.right-banner')
+        
     </div>
 
     <script>

@@ -43,21 +43,6 @@
             </div>
         </div>
 
-        <div class="hidden md:flex w-full md:w-2/3 relative flex-col justify-center items-center text-center p-12 bg-cover bg-center"
-            style="background-image: url('{{ asset('assets/img/banner.webp') }}');">
-
-            <div class="absolute inset-0 bg-black/50 opacity-80"></div>
-
-            <div class="relative z-10 p-6">
-                  <x-application-logo/>
-                <h2 class="text-4xl font-bold text-white leading-tight mb-4">
-                    Transform Your Business with T-POS
-                </h2>
-                <p class="text-lg text-indigo-100 max-w-xl mx-auto">
-                    The complete point-of-sale solution designed to streamline your operations, boost sales, and grow
-                    your business.
-                </p>
-            </div>
-        </div>
+        @include('auth.right-banner')
     </div>
 </x-guest-layout>

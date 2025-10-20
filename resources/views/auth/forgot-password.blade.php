@@ -29,27 +29,16 @@
                     </div>
 
                     <div class="flex items-center justify-end">
-                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        <button type="submit" class="btn">
                             {{ __('Email Password Reset Link') }}
                         </button>
+                        <a href="{{ route('login') }}" class="btn-gray ml-3">Cancel</a>
+
                     </div>
                 </form>
             </div>
         </div>
 
-        <div class="hidden md:flex w-full md:w-2/3 relative flex-col justify-center items-center text-center p-12 bg-cover bg-center" style="background-image: url('{{ asset('assets/img/banner.webp') }}');">
-
-            <div class="absolute inset-0 bg-black/50 opacity-80"></div>
-
-            <div class="relative z-10 p-6">
-                  <x-logo />
-                <h2 class="text-4xl font-bold text-white leading-tight mb-4">
-                    Transform Your Business with T-POS
-                </h2>
-                <p class="text-lg text-indigo-100 max-w-xl mx-auto">
-                    The complete point-of-sale solution designed to streamline your operations, boost sales, and grow your business.
-                </p>
-            </div>
-        </div>
+         @include('auth.right-banner')
     </div>
 </x-guest-layout>
